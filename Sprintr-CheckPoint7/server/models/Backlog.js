@@ -1,14 +1,14 @@
 // @ts-ignore
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-const ObjectId= Schema.Types.ObjectId 
+const ObjectId = Schema.Types.ObjectId
 
-export const BacklogSchema= new Schema( // should it be Backlog or BacklogSchema?
+export const BacklogSchema = new Schema( // should it be Backlog or BacklogSchema?
   {
     name: { type: String, required: true },
-    body: { type: String, required: true},
-    isOpen: { type: Boolean, required: true},
-    color: { type: String, required: true},
+    body: { type: String, required: true },
+    isOpen: { type: Boolean, required: true },
+    color: { type: String, required: true },
     projectId: { type: String, required: true },
     creatorId: { type: ObjectId, ref: 'Account', required: true }
   },
@@ -27,4 +27,4 @@ BacklogSchema.virtual('project', {
   justOne: true
 })
 
- export default BacklogSchema
+export default BacklogSchema
