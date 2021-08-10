@@ -26,5 +26,4 @@ BacklogSchema.virtual('project', {
   foreignField: 'id',
   justOne: true
 })
-
  export default BacklogSchema
