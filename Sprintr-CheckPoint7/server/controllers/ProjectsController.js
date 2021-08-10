@@ -1,11 +1,13 @@
 import {projectsService} from '../services/ProjectsService'
 import BaseController from '../utils/BaseController'
+import { Auth0Provider } from '@bcwdev/auth0provider'
+
 
 export class ProjectsController extends BaseController {
   constructor() {
     super()
     this.router
-
+    .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAllProjects)
       .get('/:id', this.getSingleProject)
       .post('', this.createProject)
@@ -15,7 +17,7 @@ export class ProjectsController extends BaseController {
 
   async getAllProjects(req, res, next) {
     try {
-      const projects = await projectsService.getAllProjects()// do I need to put anything in paranthises?
+      const projects = await projectsService.getAllProjects({creatorid: req.userInfo.id})// do I need to put anything in paranthises?
       res.send(projects)
     } catch (error) {
       next(error)
@@ -24,7 +26,7 @@ export class ProjectsController extends BaseController {
   async getSingleProject(req, res, next) {
     try {
       // clearification on req.params.id, req.id?
-      const project = await projectsService.getSingleProject() // what should we place inside of paranthises?
+      const project = await projectsService.getSingleProject(req.params.id) // what should we place inside of paranthises?
       res.send(project)
     } catch (error) {
       next(error)
@@ -34,7 +36,7 @@ export class ProjectsController extends BaseController {
   async createProject(req, res, next) {
     try {
       // what dose below relation defines? 
-      req.body.createId=req.params.id
+      req.body.creatorId =  req.userInfo.id
       const project = await projectsService.createProject(req.body) // why req.body?
       res.send(project)
     } catch (error) {
