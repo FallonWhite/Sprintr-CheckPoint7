@@ -38,7 +38,7 @@ export class ProjectsController extends BaseController {
     try {
       // what dose below relation defines?
       req.body.creatorId = req.params.id
-      const project = await projectsService.createProject(req.body) // why req.body?
+      const project = await projectsService.create(req.body) // why req.body?
       res.send(project)
     } catch (error) {
       next(error)
