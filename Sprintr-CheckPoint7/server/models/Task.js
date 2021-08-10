@@ -6,7 +6,7 @@ const ObjectId = Schema.Types.ObjectId
 export const TaskSchema = new Schema(
   {
     weight: { type: Number, required: true },
-    status: { enum: ['pending', 'inProgress', 'review', 'done'], required: true },
+    status: { type: String, enum: ['pending', 'inProgress', 'review', 'done'], required: true },
     projectId: { type: String, required: true },
     sprintId: { type: String, required: true },
     backlogId: { type: String, required: true },

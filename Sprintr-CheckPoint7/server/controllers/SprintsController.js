@@ -52,7 +52,7 @@ export class SprintsController extends BaseController {
   async create(req, res, next) {
     try {
       // what dose below relation defines?
-      req.body.creatorId = req.params.id
+      req.body.creatorId = req.userInfo.id
       const sprint = await sprintsService.create(req.body) // why req.body?
       res.send(sprint)
     } catch (error) {
