@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class ProjectsService {
   async getAllProjects(query = {}) {
-    return await dbContext.Projects.find(query)
+    return await dbContext.Projects.find(query).populate('creator')
   }
 
   async getSingleProject(id) {

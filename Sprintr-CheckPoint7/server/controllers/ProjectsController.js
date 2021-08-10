@@ -5,7 +5,7 @@ import { Auth0Provider } from '@bcwdev/auth0provider'
 
 export class ProjectsController extends BaseController {
   constructor() {
-    super()
+    super('api/projects')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAllProjects)
@@ -17,7 +17,7 @@ export class ProjectsController extends BaseController {
 
   async getAllProjects(req, res, next) {
     try {
-      const projects = await projectsService.getAllProjects({ creatorid: req.userInfo.id })// do I need to put anything in paranthises?
+      const projects = await projectsService.getAllProjects({ creatorId: req.userInfo.id })// do I need to put anything in paranthises?
       res.send(projects)
     } catch (error) {
       next(error)
@@ -37,8 +37,8 @@ export class ProjectsController extends BaseController {
   async createProject(req, res, next) {
     try {
       // what dose below relation defines?
-      req.body.creatorId = req.params.id
-      const project = await projectsService.create(req.body) // why req.body?
+      req.body.creatorId = req.userInfo.id
+      const project = await projectsService.createProject(req.body) // why req.body?
       res.send(project)
     } catch (error) {
       next(error)
@@ -47,7 +47,7 @@ export class ProjectsController extends BaseController {
 
   async updateProject(req, res, next) {
     try {
-      req.body.id = req.params.id
+      req.body.id = req.userInfo.id
       const project = await projectsService.updateProject(req.body)
       res.send(project)
     } catch (error) {
