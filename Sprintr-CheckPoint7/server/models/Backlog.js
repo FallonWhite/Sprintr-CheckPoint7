@@ -7,23 +7,24 @@ export const BacklogSchema = new Schema( // should it be Backlog or BacklogSchem
   {
     name: { type: String, required: true },
     body: { type: String, required: true },
-    isOpen: { type: Boolean, required: true },
-    color: { type: String, required: true },
+    isOpen: { type: Boolean, default: true, required: true },
+    color: { type: String, default: true, required: true },
     projectId: { type: String, required: true },
-    creatorId: { type: ObjectId, ref: 'Account', required: true }
+    // changed ref from 'account" to 'project//
+    creatorId: { type: ObjectId, ref: 'Project', required: true }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
 BacklogSchema.virtual('account', {
   localField: 'creatorId',
   ref: 'Account',
-  foreignField: 'id',
+  foreignField: '_id',
   justOne: true
 })
 BacklogSchema.virtual('project', {
   localField: 'projectId',
   ref: 'Project',
-  foreignField: 'id',
+  foreignField: '_id',
   justOne: true
 })
 
