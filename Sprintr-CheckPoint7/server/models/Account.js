@@ -1,7 +1,6 @@
 // @ts-ignore
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
-
 export const AccountSchema = new Schema(
   {
     subs: [{ type: String, unique: true }],
