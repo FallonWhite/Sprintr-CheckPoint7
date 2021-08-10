@@ -5,19 +5,25 @@ class ProjectsService {
   async  getAllProjects(query={}) {
     return await dbContext.Projects.find(query)
   }
-  getSingleProject() {
-    throw new Error('Method not implemented.')
+  async getSingleProject() {
+    const project = await dbContext.Projects.findById() // do I need to pass id inside paranthesis?
+    if (!project) {
+      throw new BadRequest('invalid request')
+    }
+    return project
   }
-  createProject(body) {
-    throw new Error('Method not implemented.')
+  async createProject(body) {
+    return await dbContext.Projects.createProject(body)
   }
-  updateProject(body) {
-    throw new Error('Method not implemented.')
+  async updateProject(body) {
+    await this.getSingleProject() // what do I need to pass in () ? why?
+    const project = await dbContext.Projects.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    // I would like to have a clearification about (body.id, body, { new: true, runValidators: true })
+    return project
   }
-  destroyProject(body) {
-    throw new Error('Method not implemented.')
+ async destroyProject(body) {
+  await this.getSingleProject() //?
+  return await dbContext.Projects.findByIdAndDelete()// ?
   }
-  
-  
 }
 export const projectsService= new ProjectsService()
