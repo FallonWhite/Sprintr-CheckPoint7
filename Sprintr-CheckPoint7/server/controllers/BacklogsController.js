@@ -37,7 +37,7 @@ export class BacklogsController extends BaseController {
   async create(req, res, next) {
     try {
       // what dose below relation defines?
-      req.body.creatorId = req.params.id
+      req.body.creatorId = req.userInfo.id
       const project = await backlogsService.create(req.body) // why req.body?
       res.send(project)
     } catch (error) {
