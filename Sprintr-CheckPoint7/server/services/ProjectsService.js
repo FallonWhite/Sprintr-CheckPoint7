@@ -1,26 +1,23 @@
 import { dbContext } from '../db/DbContext'
+import {BadRequest} from '../utils/Errors'
 
 class ProjectsService {
-  async getAllProjects() {
-    const project = await dbContext.getAllProjects()
-    if (!project) {
-      throw new BadRequest('Invalid project')
-    }
-    return project
+  async  getAllProjects(query={}) {
+    return await dbContext.Projects.find(query)
   }
-
-  async getProjectById() {
-    const project = await dbContext.getProjectById()
-    if (!project) {
-      throw new BadRequest('Invalid project')
-    }
-    return project
+  getSingleProject() {
+    throw new Error('Method not implemented.')
   }
+  createProject(body) {
+    throw new Error('Method not implemented.')
   }
-
-  async createProject(body) {
-    return await dbContext.createProject(body)
-
+  updateProject(body) {
+    throw new Error('Method not implemented.')
   }
-
-
+  destroyProject(body) {
+    throw new Error('Method not implemented.')
+  }
+  
+  
+}
+export const projectsService= new ProjectsService()
