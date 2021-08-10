@@ -14,6 +14,10 @@ class BacklogsService {
     return project
   }
 
+  async getBacklogsByProjectId(id) {
+    return await dbContext.backlogs.find({ projectId: id })
+  }
+
   async create(body) {
     return await dbContext.backlogs.create(body)
   }

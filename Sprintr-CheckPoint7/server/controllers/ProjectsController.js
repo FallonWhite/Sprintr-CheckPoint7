@@ -3,6 +3,7 @@ import BaseController from '../utils/BaseController'
 // @ts-ignore
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { sprintsService } from '../services/SprintsService'
+import { backlogsService } from '../services/BacklogsService'
 import { BadRequest } from '../utils/Errors'
 
 export class ProjectsController extends BaseController {
@@ -13,6 +14,7 @@ export class ProjectsController extends BaseController {
       .get('', this.getAllProjects)
       .get('/:id', this.getSingleProject)
       .get('/:id/sprints', this.getSprintsByProjectId)
+      .get('/:id/backlogs', this.getBacklogsByProjectId)
       // .get('/:id/backlogs', this.getBacklogsByProjectId)
       .post('', this.createProject)
       .put('/:id', this.updateProject)
@@ -45,6 +47,18 @@ export class ProjectsController extends BaseController {
         throw new BadRequest('No sprint available')
       }
       res.send(sprints)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getBacklogsByProjectId(req, res, next) {
+    try {
+      const backlogs = await backlogsService.getBacklogsByProjectId(req.params.id)
+      if (!backlogs) {
+        throw new BadRequest('No backlogs available')
+      }
+      res.send(backlogs)
     } catch (error) {
       next(error)
     }
