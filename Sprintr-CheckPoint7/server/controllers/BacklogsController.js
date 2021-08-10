@@ -5,7 +5,7 @@ import { backlogsService } from '../services/BacklogsService'
 
 export class BacklogsController extends BaseController {
   constructor() {
-    super()
+    super('api/backlogs')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
