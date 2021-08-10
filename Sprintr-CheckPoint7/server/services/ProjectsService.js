@@ -2,9 +2,13 @@ import { dbContext } from '../db/DbContext'
 import {BadRequest} from '../utils/Errors'
 
 class ProjectsService {
+  create(body) {
+    throw new Error('Method not implemented.')
+  }
   async  getAllProjects(query={}) {
     return await dbContext.Projects.find(query)
   }
+  
   async getSingleProject(id) {
     const project = await dbContext.Projects.findById(id) // do I need to pass id inside paranthesis?
     if (!project) {
