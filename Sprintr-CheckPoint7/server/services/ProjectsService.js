@@ -13,7 +13,7 @@ class ProjectsService {
     return project
   }
   async createProject(body) {
-    return await dbContext.Projects.createProject(body)
+    return await dbContext.Projects.create(body)
   }
   async updateProject(body) {
     await this.getSingleProject() // what do I need to pass in () ? why?

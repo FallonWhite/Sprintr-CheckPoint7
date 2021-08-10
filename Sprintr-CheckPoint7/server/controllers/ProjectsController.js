@@ -1,5 +1,6 @@
 import {projectsService} from '../services/ProjectsService'
 import BaseController from '../utils/BaseController'
+// @ts-ignore
 import { Auth0Provider } from '@bcwdev/auth0provider'
 
 
@@ -36,7 +37,7 @@ export class ProjectsController extends BaseController {
   async createProject(req, res, next) {
     try {
       // what dose below relation defines? 
-      req.body.creatorId =  req.userInfo.id
+      req.body.creatorId=req.params.id
       const project = await projectsService.createProject(req.body) // why req.body?
       res.send(project)
     } catch (error) {
