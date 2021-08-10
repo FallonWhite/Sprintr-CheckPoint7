@@ -10,8 +10,6 @@ Account = mongoose.model('Account', AccountSchema)
 Projects = mongoose.model('Project', ProjectSchema);
 backlogs = mongoose.model('Backlog', BacklogSchema);
 sprint = mongoose.model('Sprint', SprintSchema);
-
 }
 
 export const dbContext = new DbContext()
-
