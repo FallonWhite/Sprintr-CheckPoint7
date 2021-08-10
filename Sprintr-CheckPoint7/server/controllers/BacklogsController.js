@@ -10,6 +10,7 @@ export class BacklogsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      // .get('/:id/tasks', this.getTasksByBacklogId)
       .post('', this.create)
       .put('/:id', this.update)
       .delete('/:id', this.destroy)

@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
-export const TaskSchema = new Schema( // should it be Task or TaskSchema?
+export const TaskSchema = new Schema(
   {
     weight: { type: Number, required: true },
     status: { enum: ['pending', 'inProgress', 'review', 'done'], required: true },

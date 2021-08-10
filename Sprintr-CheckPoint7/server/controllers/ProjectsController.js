@@ -2,6 +2,8 @@ import { projectsService } from '../services/ProjectsService'
 import BaseController from '../utils/BaseController'
 // @ts-ignore
 import { Auth0Provider } from '@bcwdev/auth0provider'
+import { sprintsService } from '../services/SprintsService'
+import { BadRequest } from '../utils/Errors'
 
 export class ProjectsController extends BaseController {
   constructor() {
@@ -10,6 +12,8 @@ export class ProjectsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAllProjects)
       .get('/:id', this.getSingleProject)
+      .get('/:id/sprints', this.getSprintsByProjectId)
+      // .get('/:id/backlogs', this.getBacklogsByProjectId)
       .post('', this.createProject)
       .put('/:id', this.updateProject)
       .delete('/:id', this.destroyProject)
@@ -29,6 +33,18 @@ export class ProjectsController extends BaseController {
       // clearification on req.params.id, req.id?
       const project = await projectsService.getSingleProject(req.params.id) // what should we place inside of paranthises?
       res.send(project)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getSprintsByProjectId(req, res, next) {
+    try {
+      const sprints = await sprintsService.getSprintsByProjectId(req.params.id)
+      if (!sprints) {
+        throw new BadRequest('No sprint available')
+      }
+      res.send(sprints)
     } catch (error) {
       next(error)
     }

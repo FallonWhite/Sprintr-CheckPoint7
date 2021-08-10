@@ -2,14 +2,17 @@ import BaseController from '../utils/BaseController'
 // @ts-ignore
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { sprintsService } from '../services/SprintsService'
+import { tasksService } from '../services/TasksService'
+import { BadRequest } from '../utils/Errors'
 
 export class SprintsController extends BaseController {
   constructor() {
-    super('api/backlogs')
+    super('api/sprints')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/tasks', this.getTasksBySprintId)
       .post('', this.create)
       .put('/:id', this.update)
       .delete('/:id', this.destroy)
@@ -29,6 +32,18 @@ export class SprintsController extends BaseController {
       // clearification on req.params.id, req.id?
       const sprint = await sprintsService.getById(req.params.id) // what should we place inside of paranthises?
       res.send(sprint)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getTasksBySprintId(req, res, next) {
+    try {
+      const tasks = await tasksService.getTasksBySprintId(req.params.id)
+      if (!tasks) {
+        throw new BadRequest('no tasks available')
+      }
+      res.send(tasks)
     } catch (error) {
       next(error)
     }
