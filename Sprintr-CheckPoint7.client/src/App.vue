@@ -4,6 +4,9 @@
   </header>
   <main>
     <router-view />
+    <div class="modals">
+      <ProjectModal />
+    </div>
   </main>
   <footer>
     <div class="bg-light text-dark text-center p-4">

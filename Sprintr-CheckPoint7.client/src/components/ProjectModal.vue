@@ -1,7 +1,7 @@
 <template>
   <!-- Modal -->
   <div class="modal"
-       :id="'project-modal-'+project.id"
+       id="project-modal"
        tabindex="-1"
        role="dialog"
        aria-labelledby="modelTitleId"
@@ -11,8 +11,8 @@
       <div class="modal-content">
         <div class="modal-header bg-dark">
           <h5 class="project-modal">
-            {{ project.name }}
-            {{ project.description }}
+            <!-- {{ project.name }}
+            {{ project.description }} -->
           </h5>
           <button type="button" class="close text-light">
             <span aria-hidden="true">&times;</span>
@@ -20,20 +20,19 @@
         </div>
         <div class="modal-body bg-dark">
           <div class="container-fluid">
-            <div class="row" v-if="project.modal.length">
+            <!-- <div class="row" v-if="project.modal.length">
               <div class="col-6 p-1" v-for="pic in project.photos" :key="pic.id">
                 <img class="w-100 h-100 cover shadow-light" :src="pic.imgUrl">
-              </div>
-            </div>
-            <div class="row" v-else>
-            </div>
+              </div> -->
           </div>
+          <!-- <div class="row" v-else>
+            </div> -->
         </div>
-        <div class="modal-footer bg-dark">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-        </div>
+      </div>
+      <div class="modal-footer bg-dark">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
       </div>
     </div>
   </div>
@@ -41,12 +40,12 @@
 
 <script>
 export default {
-  props: {
-    project: {
-      type: Object,
-      required: true
-    }
-  },
+  // props: {
+  //   project: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
   setup() {
     return {}
   }

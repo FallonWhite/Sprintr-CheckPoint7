@@ -1,5 +1,12 @@
 <template>
   <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="col-12 text-right">
+        <button class="btn btn-outline-info" data-target="#project-modal" data-toggle="modal">
+          Create Project
+        </button>
+      </div>
+    </div>
     <div class="row">
       <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
     </div>
