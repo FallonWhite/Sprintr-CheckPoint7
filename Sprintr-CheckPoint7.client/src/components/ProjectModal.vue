@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="modal-footer bg-dark">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        <button type="button" class="btn btn-outline-light btn-info" data-dismiss="modal">
           Close
         </button>
       </div>
