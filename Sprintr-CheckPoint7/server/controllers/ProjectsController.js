@@ -15,7 +15,6 @@ export class ProjectsController extends BaseController {
       .get('/:id', this.getSingleProject)
       .get('/:id/sprints', this.getSprintsByProjectId)
       .get('/:id/backlogs', this.getBacklogsByProjectId)
-      // .get('/:id/backlogs', this.getBacklogsByProjectId)
       .post('', this.createProject)
       .put('/:id', this.updateProject)
       .delete('/:id', this.destroyProject)
@@ -77,7 +76,8 @@ export class ProjectsController extends BaseController {
 
   async updateProject(req, res, next) {
     try {
-      req.body.id = req.userInfo.id
+      req.body.id = req.params.id
+      req.body.creatorId = req.userInfo.id
       const project = await projectsService.updateProject(req.body)
       res.send(project)
     } catch (error) {
@@ -87,7 +87,7 @@ export class ProjectsController extends BaseController {
 
   async destroyProject(req, res, next) {
     try {
-      await projectsService.destroyProject(req.params.id)
+      await projectsService.destroyProject(req.params.id, req.userInfo.id)
       res.send({ message: 'You deleted' })
     } catch (error) {
       next(error)

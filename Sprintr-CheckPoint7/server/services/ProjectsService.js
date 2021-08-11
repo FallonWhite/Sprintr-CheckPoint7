@@ -19,15 +19,15 @@ class ProjectsService {
   }
 
   async updateProject(body) {
-    await this.getSingleProject() // what do I need to pass in () ? why?
+    // const original = await this.getSingleProject()
+    // what do I need to pass in () ? why?
     const project = await dbContext.Projects.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
     // I would like to have a clearification about (body.id, body, { new: true, runValidators: true })
     return project
   }
 
-  async destroyProject(body) {
-    await this.getSingleProject(body.id) // ?
-    return await dbContext.Projects.findByIdAndDelete()// ?
+  async destroyProject(id, userId) {
+    return await dbContext.Projects.findOneAndDelete({ _id: id, creatorId: userId })// ?
   }
 }
 export const projectsService = new ProjectsService()

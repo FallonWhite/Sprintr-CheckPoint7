@@ -8,7 +8,7 @@ export class TasksController extends BaseController {
     super('api/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getAll)
+      .get('', this.getAll) // could remove this route
       .get('/:id', this.getById)
       .post('', this.create)
       .put('/:id', this.update) // update or edit? is that matter?

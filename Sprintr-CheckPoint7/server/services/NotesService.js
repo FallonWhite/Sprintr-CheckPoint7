@@ -32,8 +32,8 @@ class NotesService {
     return note
   }
 
-  async destroy(body) { // body or Id
-    await this.getById(body.id) // ?
+  async destroy(id) { // body or Id
+    await this.getById(id) // ?
     return await dbContext.notes.findByIdAndDelete()// ?
   } // nobody should be able to delete the note except the creator ?
 }
