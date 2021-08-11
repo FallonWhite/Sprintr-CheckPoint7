@@ -28,9 +28,8 @@ class SprintsService {
     return sprint
   }
 
-  async destroy(body) {
-    await this.getById(body.id) // ?
-    return await dbContext.sprints.findByIdAndDelete()// ?
+  async destroySprint(id, userId) {
+    return await dbContext.Projects.findOneAndDelete({ _id: id, creatorId: userId })// ?
   }
 }
 export const sprintsService = new SprintsService()
