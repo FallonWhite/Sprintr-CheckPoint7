@@ -1,40 +1,37 @@
-import { send } from 'vite'
+
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
+import { api } from './AxiosService'
 
 class ProjectsService {
   async getAll() {
     const res = await api.get('api/projects') // where do I need to define my api?
-    send(res.data)
     AppState.projects = res.data
   }
 
   async getById(id) {
     const res = await api.get('api/projects/', id)
-    send(res.data)
     AppState.projects = res.data
   }
 
   async getBacklogByProject(id) {
     const res = await api.get('api/projects/', id)
-    send(res.data)
     AppState.backlog = res.data
   }
 
   async getSprintByProject(id) {
     const res = await api.get('api/projects/', id)
-    send(res.data)
     AppState.sprint = res.data
   }
 
   async getTasksByProject(id) {
     const res = await api.get('api/projects/', id)
-    send(res.data)
+    logger.log(res.data)
     AppState.task = res.data
   }
 
   async create(body) {
     const res = await api.post('api/projects', body)
-    send(res.data)
     AppState.project.push(res.data)
     return res.data.id
   }
