@@ -11,7 +11,7 @@
         {{ projectProp.description }}
       </p>
       <div class="align-self-end" v-if="account.id === projectProp.creatorId">
-        <button class="btn-md btn-dark" @click="destroy">
+        <button class="btn-md btn-dark" @click="destroyProject">
           Remove
         </button>
       </div>
@@ -37,7 +37,7 @@ export default {
   setup(props) {
     return {
       account: computed(() => AppState.account),
-      async destroy() {
+      async destroyProject() {
         try {
           if (await Pop.confirm()) {
             await projectsService.destroy(props.projectProp.id)

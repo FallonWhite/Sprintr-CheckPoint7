@@ -17,36 +17,36 @@ class ProjectsService {
 
   async getBacklogByProject(id) {
     const res = await api.get('api/projects/', id)
-    AppState.backlog = res.data
+    AppState.backlogs = res.data
   }
 
   async getSprintByProject(id) {
     const res = await api.get('api/projects/', id)
-    AppState.sprint = res.data
+    AppState.sprints = res.data
   }
 
   async getTasksByProject(id) {
     const res = await api.get('api/projects/', id)
     // logger.log(res.data)
-    AppState.task = res.data
+    AppState.tasks = res.data
   }
 
   async create(body) {
     const res = await api.post('api/projects', body)
-    AppState.project.push(res.data)
+    AppState.projects.push(res.data)
     return res.data.id
   }
 
   async edit(id, body) {
-    const res = await api.put('api/projects/', id)
+    const res = await api.put('api/projects/' + id)
     // eslint-disable-next-line no-console
     console.log(res.data)
-    AppState.project = res.data
+    AppState.projects = res.data
   }
 
   async destroy(id) {
-    await api.delete('api/projects/', id)
-    AppState.project = AppState.project.find(p => p.id !== id)
+    await api.delete('api/projects/' + id)
+    AppState.projects = AppState.projects.filter(p => p.id !== id)
     // eslint-disable-next-line no-console
     console.log('Deleted Successfully')
   }
