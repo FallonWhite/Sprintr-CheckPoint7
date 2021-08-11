@@ -14,12 +14,13 @@ class NotesService {
     return notes
   }
 
-  async getNotesByTaskId(id) {
-    const notes= await dbContext.tasks.findByTaskId({ taskId: id })
-    if(!notes){
-      throw new BadRequest("There is no note to show")// some miner check
+  async getNotesByTaskId(req, res, next) {
+    try {
+      const notes = await notesService.getNotesByTaskId(req.params.id)
+      res.send(notes)
+    } catch (error) {
+      next(error)
     }
-
   }
 
   async create(body) {

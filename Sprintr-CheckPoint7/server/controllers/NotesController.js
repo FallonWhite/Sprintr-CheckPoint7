@@ -25,9 +25,10 @@ export class NotesController extends BaseController {
       next(error)
     }
   }
+
   async getById(req, res, next) {
     try {
-      const notes = await notesService.getById(req.params.id) // do we need params or userInfo? 
+      const notes = await notesService.getById(req.params.id) // do we need params or userInfo?
       res.send(notes)
     } catch (error) {
       next(error)
@@ -63,4 +64,3 @@ export class NotesController extends BaseController {
     }
   }
 }
-// great job Fallon👏👏
