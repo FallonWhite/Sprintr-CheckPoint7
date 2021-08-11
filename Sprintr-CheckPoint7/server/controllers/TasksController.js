@@ -11,7 +11,7 @@ export class TasksController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getById)
       .post('', this.create)
-      .put('/:id', this.update)
+      .put('/:id', this.update) // update or edit? is that matter?
       .delete('/:id', this.destroy)
   }
 

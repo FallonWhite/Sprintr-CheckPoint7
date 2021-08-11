@@ -10,6 +10,8 @@ export class NotesController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
       .get('/:id', this.getById)
+      .get('/:id/taskId/') // do we need to add getNotesByTaskId
+      .get('/:id/creatorId')// and also getNoteByAccountId
       .post('', this.create)
       .put('/:id', this.update)
       .delete('/:id', this.destroy)
@@ -17,16 +19,15 @@ export class NotesController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      const notes = await notesService.getAll({ creatorid: req.userInfo.id })// do I need to put anything in paranthises?
+      const notes = await notesService.getAll({ creatorid: req.userInfo.id })
       res.send(notes)
     } catch (error) {
       next(error)
     }
   }
-
   async getById(req, res, next) {
     try {
-      const notes = await notesService.getById(req.params.id)
+      const notes = await notesService.getById(req.params.id) // do we need params or userInfo? 
       res.send(notes)
     } catch (error) {
       next(error)
@@ -46,7 +47,7 @@ export class NotesController extends BaseController {
   async update(req, res, next) {
     try {
       req.body.id = req.params.id
-      const notes = await notesService.update(req.body)
+      const notes = await notesService.update(req.body) // we don,t need req.params.id?
       res.send(notes)
     } catch (error) {
       next(error)
@@ -62,3 +63,4 @@ export class NotesController extends BaseController {
     }
   }
 }
+// great job Fallon👏👏

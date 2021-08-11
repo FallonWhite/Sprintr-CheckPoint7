@@ -1,3 +1,4 @@
+// @ts-ignore
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const TaskId = Schema.Types.TaskId
@@ -7,10 +8,8 @@ export const NoteSchema = new Schema(
   {
     body: { type: String, required: true },
     taskId: { type: String, required: true },
-    // projectId: { type: String, required: true },
-    // sprintId: { type: String, required: true },
-    // backlogId: { type: String, required: true },
-    creatorId: { type: ObjectId, ref: 'Project', required: true }
+    creatorId: { type: ObjectId, ref: 'Account', required: true }
+    // instead of project the need Account for ref
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
@@ -20,24 +19,10 @@ NoteSchema.virtual('account', {
   foreignField: '_id',
   justOne: true
 })
-// NoteSchema.virtual('project', {
-//   localField: 'projectId',
-//   ref: 'Project',
-//   foreignField: '_id',
-//   justOne: true
-// })
-
 NoteSchema.virtual('task', {
   localField: 'taskId',
   ref: 'Task',
   foreignField: '_id',
   justOne: true
 })
-
-// NoteSchema.virtual('Backlog', {
-//   localField: 'backlogId',
-//   ref: 'Backlog',
-//   foreignField: '_id',
-//   justOne: true
-// })
 export default NoteSchema

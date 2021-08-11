@@ -7,15 +7,19 @@ class NotesService {
   }
 
   async getById(id) {
-    const note = await dbContext.notes.findById(id)
-    if (!note) {
+    const notes = await dbContext.notes.findById(id)
+    if (!notes) {
       throw new BadRequest('No Note Available')
     }
-    return note
+    return notes
   }
 
   async getNotesByTaskId(id) {
-    return await dbContext.tasks.find({ taskId: id })
+    const notes= await dbContext.tasks.findByTaskId({ taskId: id })
+    if(!notes){
+      throw new BadRequest("There is no note to show")// some miner check
+    }
+
   }
 
   async create(body) {
@@ -27,9 +31,9 @@ class NotesService {
     return note
   }
 
-  async destroy(body) {
+  async destroy(body) { // body or Id
     await this.getById(body.id) // ?
     return await dbContext.notes.findByIdAndDelete()// ?
-  }
+  } // nobody should be able to delete the note except the creator ?
 }
 export const notesService = new NotesService()
