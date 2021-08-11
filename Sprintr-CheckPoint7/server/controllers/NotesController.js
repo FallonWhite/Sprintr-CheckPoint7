@@ -8,23 +8,23 @@ export class NotesController extends BaseController {
     super('api/notes')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getAll)
+      // .get('', this.getAll)
       .get('/:id', this.getById)
       .get('/:id/taskId/') // do we need to add getNotesByTaskId
       .get('/:id/creatorId')// and also getNoteByAccountId
       .post('', this.create)
       .put('/:id', this.update)
-      .delete('/:id', this.destroy)
+      .delete('/:id', this.destroyNote)
   }
 
-  async getAll(req, res, next) {
-    try {
-      const notes = await notesService.getAll({ creatorid: req.userInfo.id })
-      res.send(notes)
-    } catch (error) {
-      next(error)
-    }
-  }
+  // async getAll(req, res, next) {
+  //   try {
+  //     const notes = await notesService.getAll({ creatorid: req.userInfo.id })
+  //     res.send(notes)
+  //   } catch (error) {
+  //     next(error)
+  //   }
+  // }
 
   async getById(req, res, next) {
     try {
@@ -55,9 +55,9 @@ export class NotesController extends BaseController {
     }
   }
 
-  async destroy(req, res, next) {
+  async destroyNote(req, res, next) {
     try {
-      await notesService.destroy(req.params.id)
+      await notesService.destroyNote(req.params.id)
       res.send({ message: 'Successfully Deleted!' })
     } catch (error) {
       next(error)
