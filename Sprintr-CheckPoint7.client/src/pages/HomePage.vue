@@ -1,6 +1,7 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <div class="container-fluid">
     <div class="row">
+      <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
     </div>
   </div>
 </template>

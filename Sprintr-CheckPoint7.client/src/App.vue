@@ -4,7 +4,6 @@
   </header>
   <main>
     <router-view />
-    <project-card />
   </main>
   <footer>
     <div class="bg-light text-dark text-center p-4">
@@ -16,9 +15,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
-import ProjectCard from './components/ProjectCard.vue'
 export default {
-  components: { ProjectCard },
   name: 'App',
   setup() {
     return {

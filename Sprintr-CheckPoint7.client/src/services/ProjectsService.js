@@ -1,10 +1,12 @@
 
 import { AppState } from '../AppState'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class ProjectsService {
   async getAll() {
     const res = await api.get('api/projects') // where do I need to define my api?
+    logger.log(res.data)
     AppState.projects = res.data
   }
 
@@ -25,7 +27,7 @@ class ProjectsService {
 
   async getTasksByProject(id) {
     const res = await api.get('api/projects/', id)
-    logger.log(res.data)
+    // logger.log(res.data)
     AppState.task = res.data
   }
 
