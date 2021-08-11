@@ -2,12 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class TasksService {
-  async getAll(query = {}) {
-    return await dbContext.tasks.find(query)
-  }
-
   async getById(id) {
-    const task = await dbContext.tasks.findById(id)
+    const task = await dbContext.tasks.findOne({ _id: id })
     if (!task) {
       throw new BadRequest('No Task Available')
     }
@@ -18,16 +14,12 @@ class TasksService {
     return await dbContext.tasks.find({ projectId: id })
   }
 
-  async getTasksByBacklogId(req, res, next) {
-    try {
-      const tasks = await tasksService.getTasksByBacklogId(req.params.id)
-      res.send(tasks)
-    } catch (error) {
-      next(error)
-    }
+  async getTasksByBacklogId(id) {
+    return await dbContext.tasks.find({ backlogId: id })
   }
 
   async getTasksBySprintId(req, res, next) {
+    // NOTE need to fix this route, should look similar to above
     try {
       const tasks = await tasksService.getTasksBySprintId(req.params.id)
       res.send(tasks)
@@ -45,9 +37,8 @@ class TasksService {
     return task
   }
 
-  async destroy(body) {
-    await this.getById(body.id) // ?
-    return await dbContext.tasks.findByIdAndDelete()// ?
+  async destroy(id, userId) {
+    return await dbContext.tasks.findOneAndDelete({ _id: id, creatorId: userId })// ?
   }
 }
 export const tasksService = new TasksService()

@@ -27,9 +27,8 @@ class BacklogsService {
     return backlog
   }
 
-  async destroy(body) {
-    await this.getById(body.id) // ?
-    return await dbContext.backlogs.findByIdAndDelete()// ?
+  async destroy(id, userId) {
+    return await dbContext.backlogs.findOneAndDelete({ _id: id, creatorId: userId })// ?
   }
 }
 export const backlogsService = new BacklogsService()

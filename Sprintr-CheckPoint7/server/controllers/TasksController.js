@@ -8,20 +8,10 @@ export class TasksController extends BaseController {
     super('api/tasks')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getAll) // could remove this route
       .get('/:id', this.getById)
       .post('', this.create)
       .put('/:id', this.update) // update or edit? is that matter?
       .delete('/:id', this.destroy)
-  }
-
-  async getAll(req, res, next) {
-    try {
-      const tasks = await tasksService.getAll({ creatorid: req.userInfo.id })// do I need to put anything in paranthises?
-      res.send(tasks)
-    } catch (error) {
-      next(error)
-    }
   }
 
   async getById(req, res, next) {
@@ -55,7 +45,7 @@ export class TasksController extends BaseController {
 
   async destroy(req, res, next) {
     try {
-      await tasksService.destroy(req.params.id)
+      await tasksService.destroy(req.params.id, req.userInfo.id)
       res.send({ message: 'Successfully Deleted!' })
     } catch (error) {
       next(error)

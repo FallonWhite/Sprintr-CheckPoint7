@@ -9,7 +9,7 @@ export class BacklogsController extends BaseController {
     super('api/backlogs')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .get('', this.getAll)
+      .get('', this.getAll) // don't need this route
       .get('/:id', this.getById)
       .get('/:id/tasks', this.getTasksByBacklogId)
       // .get('/:id/tasks', this.getTasksByBacklogId)
@@ -69,7 +69,7 @@ export class BacklogsController extends BaseController {
 
   async destroy(req, res, next) {
     try {
-      await backlogsService.destroy(req.params.id)
+      await backlogsService.destroy(req.params.id, req.userInfo.id)
       res.send({ message: 'You deleted' })
     } catch (error) {
       next(error)
