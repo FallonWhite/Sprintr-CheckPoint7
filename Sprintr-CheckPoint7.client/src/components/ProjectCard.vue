@@ -5,17 +5,17 @@
     </div>
     <div class="card-body">
       <h5 class="card-title">
-        {{ projectProp.name }}
+        {{ project.name }}
       </h5>
       <p class="card-text">
-        {{ projectProp.description }}
+        {{ project.description }}
       </p>
-      <div class="align-self-end" v-if="account.id === projectProp.creatorId">
-        <button class="btn-lg btn-dark">
+      <div class="align-self-end" v-if="account.id === project.creatorId">
+        <button class="btn-lg btn-dark" @click="destroy">
           Remove
         </button>
       </div>
-      <router-link router-link :to="{ name: 'Project', params: {id: projectProp.id } }" class="creator p-3 align-self-end">
+      <router-link router-link :to="{ name: 'Project', params: {id: project.creator.id } }" @click="projectPage">
       </router-link>
     </div>
   </div>
@@ -29,7 +29,7 @@ import { projectsService } from '../services/ProjectsService'
 
 export default {
   props: {
-    projectProp: {
+    project: {
       type: Object,
       required: true
     }
@@ -40,7 +40,7 @@ export default {
       async destroy() {
         try {
           if (await Pop.confirm()) {
-            await projectsService.destroy(props.projectProp.id)
+            await projectsService.destroy(props.project.id)
             Pop.toast('Project Removed', 'Success!')
           }
         } catch (error) {
