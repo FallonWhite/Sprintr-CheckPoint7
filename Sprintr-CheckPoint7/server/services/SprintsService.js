@@ -7,11 +7,11 @@ class SprintsService {
   }
 
   async getById(id) {
-    const project = await dbContext.sprints.findById(id) // do I need to pass id inside paranthesis?
-    if (!project) {
+    const sprint = await dbContext.sprints.findById(id) // do I need to pass id inside paranthesis?
+    if (!sprint) {
       throw new BadRequest('invalid request')
     }
-    return project
+    return sprint
   }
 
   async getSprintsByProjectId(id) {
@@ -23,9 +23,9 @@ class SprintsService {
   }
 
   async update(body) {
-    const project = await dbContext.sprints.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    const sprint = await dbContext.sprints.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
     // I would like to have a clearification about (body.id, body, { new: true, runValidators: true })
-    return project
+    return sprint
   }
 
   async destroy(body) {

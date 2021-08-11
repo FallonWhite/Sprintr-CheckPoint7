@@ -3,7 +3,6 @@ import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { sprintsService } from '../services/SprintsService'
 import { tasksService } from '../services/TasksService'
-import { BadRequest } from '../utils/Errors'
 
 export class SprintsController extends BaseController {
   constructor() {
@@ -40,9 +39,6 @@ export class SprintsController extends BaseController {
   async getTasksBySprintId(req, res, next) {
     try {
       const tasks = await tasksService.getTasksBySprintId(req.params.id)
-      if (!tasks) {
-        throw new BadRequest('no tasks available')
-      }
       res.send(tasks)
     } catch (error) {
       next(error)

@@ -1,11 +1,11 @@
 import BaseController from '../utils/BaseController'
 // @ts-ignore
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { tasksService } from '../services/TasksService'
+import { notesService } from '../services/NotesService'
 
-export class TasksController extends BaseController {
+export class NotesController extends BaseController {
   constructor() {
-    super('api/tasks')
+    super('api/notes')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getAll)
@@ -17,8 +17,8 @@ export class TasksController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      const tasks = await tasksService.getAll({ creatorid: req.userInfo.id })// do I need to put anything in paranthises?
-      res.send(tasks)
+      const notes = await notesService.getAll({ creatorid: req.userInfo.id })// do I need to put anything in paranthises?
+      res.send(notes)
     } catch (error) {
       next(error)
     }
@@ -26,8 +26,8 @@ export class TasksController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      const task = await tasksService.getById(req.params.id)
-      res.send(task)
+      const notes = await notesService.getById(req.params.id)
+      res.send(notes)
     } catch (error) {
       next(error)
     }
@@ -36,8 +36,8 @@ export class TasksController extends BaseController {
   async create(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      const task = await tasksService.create(req.body)
-      res.send(task)
+      const notes = await notesService.create(req.body)
+      res.send(notes)
     } catch (error) {
       next(error)
     }
@@ -46,8 +46,8 @@ export class TasksController extends BaseController {
   async update(req, res, next) {
     try {
       req.body.id = req.params.id
-      const task = await tasksService.update(req.body)
-      res.send(task)
+      const notes = await notesService.update(req.body)
+      res.send(notes)
     } catch (error) {
       next(error)
     }
@@ -55,7 +55,7 @@ export class TasksController extends BaseController {
 
   async destroy(req, res, next) {
     try {
-      await tasksService.destroy(req.params.id)
+      await notesService.destroy(req.params.id)
       res.send({ message: 'Successfully Deleted!' })
     } catch (error) {
       next(error)

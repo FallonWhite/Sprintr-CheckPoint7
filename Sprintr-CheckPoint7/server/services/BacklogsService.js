@@ -7,11 +7,11 @@ class BacklogsService {
   }
 
   async getById(id) {
-    const project = await dbContext.backlogs.findById(id) // do I need to pass id inside paranthesis?
-    if (!project) {
+    const backlog = await dbContext.backlogs.findById(id)
+    if (!backlog) {
       throw new BadRequest('invalid request')
     }
-    return project
+    return backlog
   }
 
   async getBacklogsByProjectId(id) {
@@ -23,9 +23,8 @@ class BacklogsService {
   }
 
   async update(body) {
-    const project = await dbContext.backlogs.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
-    // I would like to have a clearification about (body.id, body, { new: true, runValidators: true })
-    return project
+    const backlog = await dbContext.backlogs.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    return backlog
   }
 
   async destroy(body) {
