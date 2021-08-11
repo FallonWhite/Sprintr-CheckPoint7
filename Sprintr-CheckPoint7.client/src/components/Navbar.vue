@@ -4,8 +4,8 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
+          src="../assets/img/season_change_f99v.png"
+          height="90"
         />
       </div>
     </router-link>
@@ -28,8 +28,8 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
+          <router-link :to="{ name: 'Project' }" class="nav-link">
+            Project
           </router-link>
         </li>
       </ul>
