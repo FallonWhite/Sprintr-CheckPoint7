@@ -62,7 +62,7 @@ export default {
   }
 }
 </script>
-<style lang="scss>
+<style lang="scss">
 .modal-backdrop.show{
   opacity: 1!important;
   background:  var(--fade);
@@ -73,4 +73,5 @@ export default {
   height: 50vh;
   overflow-y: auto;
 }
+
 </style>
