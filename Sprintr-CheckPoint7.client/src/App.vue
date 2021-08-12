@@ -7,6 +7,7 @@
     <div class="modals">
       <ProjectModal />
       <BacklogModal />
+      <SprintModal />
     </div>
   </main>
   <footer>

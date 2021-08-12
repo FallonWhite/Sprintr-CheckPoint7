@@ -13,8 +13,8 @@
           <button class="btn btn-info text-center ml-4" data-target="#backlog-modal" data-toggle="modal">
             <b>Create Backlog Item</b>
           </button>
-          <button class="btn btn-info text-center ml-4" data-target="#task-modal" data-toggle="modal">
-            <b>Create Task</b>
+          <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
+            <b>Create Sprint</b>
           </button>
         </h1>
       </div>
