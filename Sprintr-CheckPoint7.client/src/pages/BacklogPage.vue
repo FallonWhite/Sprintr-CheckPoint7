@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12" v-for="b in backlogs" :key="b.id">
-      <Backlog :backlog="b" />
+      <backlogsCard :backlogs-prop="b" />
     </div>
   </div>
 </template>
