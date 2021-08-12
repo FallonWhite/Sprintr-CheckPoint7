@@ -19,7 +19,8 @@ const routes = [
     children: [{
       path: 'backlogs',
       name: 'Backlog',
-      component: loadPage('BacklogPage') // need to make a backlog page
+      component: loadPage('BacklogPage'),
+      beforeEnter: authGuard // need to make a backlog page
     }]
   },
   {
