@@ -6,6 +6,7 @@
     <router-view />
     <div class="modals">
       <ProjectModal />
+      <BacklogModal />
     </div>
   </main>
   <footer>
