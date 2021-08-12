@@ -22,7 +22,7 @@
             class="form-control"
             id="body"
             v-model="state.newBacklog.body"
-            rows="4"
+            rows="10"
             placeholder="Body..."
           >
         </div>
@@ -37,10 +37,37 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
+import { backlogsService } from '../services/BacklogsService'
+import Pop from '../utils/Notifier'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
+
 export default {
   name: 'Component',
   setup() {
-
-  }
+    const route = useRoute()
+    const state = reactive({
+      newBacklog: {}
+    })
+    return {
+      state,
+      account: computed(() => AppState.account),
+      backlogs: computed(() => AppState.backlogs),
+      activeProject: computed(() => AppState.activeProject),
+      async createBacklog() {
+        try {
+          state.newBacklog.projectId = route.params.id
+          await backlogsService.create(state.newBacklog)
+          state.newBacklog = {}
+          Pop.toast('Backlog Created succesfully')
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
+  },
+  components: {}
 }
 </script>
