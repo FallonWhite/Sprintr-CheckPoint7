@@ -18,6 +18,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { projectsService } from '../services/ProjectsService'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
+import ProjectCard from '../components/ProjectCard.vue'
 export default {
   name: 'Home',
   setup() {
@@ -31,6 +32,9 @@ export default {
     return {
       projects: computed(() => AppState.projects)
     }
+  },
+  components: {
+    ProjectCard
   }
 }
 </script>

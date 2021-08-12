@@ -16,6 +16,8 @@
           Remove
         </button>
       </div>
+      <router-link router-link :to="{ name: 'Task', params: {id: taskProp.id } }" @click="projectPage">
+      </router-link>
     </div>
   </div>
 </template>

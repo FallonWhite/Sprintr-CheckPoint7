@@ -37,11 +37,11 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark btn-secondary" data-dismiss="modal">
-            Close
+          <button type="button" class="btn btn-outline-dark btn-warning" data-dismiss="modal">
+            <b><i>Close</i></b>
           </button>
-          <button type="submit" class="btn btn-primary" @click="createProject">
-            Create
+          <button type="submit" class="btn btn-outline-dark btn-info" @click="createProject">
+            <b>Create</b>
           </button>
         </div>
       </div>
@@ -72,6 +72,7 @@ export default {
 .modal-body{
   height: 50vh;
   overflow-y: auto;
+  background-color: dark;
 }
 
 </style>

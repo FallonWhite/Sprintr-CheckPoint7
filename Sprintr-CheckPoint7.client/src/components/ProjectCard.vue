@@ -1,7 +1,9 @@
 <template>
   <div class="card text-white bg-info mb-3 m-4 justify-content-center" style="max-width: 18rem;">
     <div class="card-header text-center">
-      <h5>Project</h5>
+      <h5 style="text-align: center; text-shadow: 2px 2px black;">
+        Project
+      </h5>
     </div>
     <div class="card-body">
       <h5 class="card-title">
@@ -11,7 +13,7 @@
         {{ projectProp.description }}
       </p>
       <div class="align-self-end" v-if="account.id === projectProp.creatorId">
-        <button class="btn-sm btn-dark" @click="destroyProject">
+        <button class="btn-sm btn-dark" style="background-color: brown" @click="destroyProject">
           Remove
         </button>
       </div>
