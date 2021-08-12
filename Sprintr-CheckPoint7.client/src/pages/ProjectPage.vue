@@ -1,5 +1,5 @@
 <template>
-  <div class="project container-fluid ">
+  <div class="project container-fluid component">
     <div class="row mt-4">
       <div class="col-12">
         <h1 class="text-info p-3 pb-1 m-1" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
