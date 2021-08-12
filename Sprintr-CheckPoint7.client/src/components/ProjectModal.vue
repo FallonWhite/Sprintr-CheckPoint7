@@ -1,53 +1,49 @@
 <template>
   <!-- Modal -->
-  <div class="modal"
+  <div class="modal fade"
        id="project-modal"
        tabindex="-1"
        role="dialog"
        aria-labelledby="modelTitleId"
        aria-hidden="true"
   >
+    <!-- <div class="modal fade"
+         id="exampleModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true"
+    > -->
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-dark">
-          <h5 class="project-modal">
-            {{ project.name }}
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            New message
           </h5>
-          <div class="row">
-            <div class="col">
-              <label for="head">Create project</label>
-            </div>
-            <div class="col">
-              <Label>Name</Label>
-              <input type="text" placeholder="Name ...">
-            </div>
-            <div class="col">
-              <label for="">Description</label>
-              <textarea name="des" id="des" cols="30" rows="10">Description</textarea>
-            </div>
-            <div class="col">
-              <button>Create</button>
-            </div>
-          </div>
-          <button type="button" class="close text-light">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body bg-dark">
-          <div class="container-fluid">
-            <!-- <div class="row" v-if="project.modal.length">
-              <div class="col-6 p-1" v-for="pic in project.photos" :key="pic.id">
-                <img class="w-100 h-100 cover shadow-light" :src="pic.imgUrl">
-              </div> -->
-          </div>
-          <!-- <div class="row" v-else>
-            </div> -->
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="project.name" class="col-form-label">Name:</label>
+              <input type="text" class="form-control" id="project.name">
+            </div>
+            <div class="form-group">
+              <label for="project.description" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="project.description"></textarea>
+            </div>
+          </form>
         </div>
-      </div>
-      <div class="modal-footer bg-dark">
-        <button type="button" class="btn btn-outline-light btn-info" data-dismiss="modal">
-          Close
-        </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            Create
+          </button>
+        </div>
       </div>
     </div>
   </div>
