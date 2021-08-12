@@ -11,13 +11,11 @@
         {{ taskProp.body }}
       </p>
       <p>{{ taskProp.status }}</p>
-      <div class="align-self-end" v-if="account.id === projectProp.creatorId">
-        <button class="btn-sm btn-dark" @click="destroyProject">
+      <div class="align-self-end" v-if="account.id === taskProp.creatorId">
+        <button class="btn-sm btn-dark" @click="destroytask">
           Remove
         </button>
       </div>
-      <router-link router-link :to="{ name: 'Project', params: {id: projectProp.id } }" @click="projectPage">
-      </router-link>
     </div>
   </div>
 </template>
@@ -26,11 +24,11 @@
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
-import { projectsService } from '../services/ProjectsService'
+import { tasksService } from '../services/TasksService'
 
 export default {
   props: {
-    projectProp: {
+    taskProp: {
       type: Object,
       required: true
     }
@@ -38,11 +36,11 @@ export default {
   setup(props) {
     return {
       account: computed(() => AppState.account),
-      async destroyProject() {
+      async destroyTask() {
         try {
           if (await Pop.confirm()) {
-            await projectsService.destroy(props.projectProp.id)
-            Pop.toast('Project Removed', 'Success!')
+            await tasksService.destroy(props.taskProp.id)
+            Pop.toast('Task Removed', 'Success!')
           }
         } catch (error) {
           Pop.toast(error, 'error')
