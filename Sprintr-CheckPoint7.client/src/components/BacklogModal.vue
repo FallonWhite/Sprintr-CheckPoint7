@@ -17,22 +17,22 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="projectModalLabel">
-            New Project
+          <h5 class="modal-title" id="backlogModalLabel">
+            New Backlog Item
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createProject">
+          <form @submit.prevent="createBacklogs">
             <div class="form-group">
-              <label for="project.name" class="col-form-label">Name:</label>
-              <input v-model="state.newProject.name" type="text" class="form-control" placeholder="Project Name..." id="project.name">
+              <label for="backlogs.name" class="col-form-label">Name:</label>
+              <input v-model="state.newBacklogs.name" type="text" class="form-control" placeholder="Backlog Item Name..." id="backlogs.name">
             </div>
             <div class="form-group">
-              <label for="project.description" class="col-form-label">Description:</label>
-              <textarea v-model="state.newProject.description" class="form-control" placeholder="Project Description..." id="project.description"></textarea>
+              <label for="backlogs.body" class="col-form-label">Body:</label>
+              <textarea v-model="state.newBacklogs.body" class="form-control" placeholder="Backlog Item Body..." id="backlogs.body"></textarea>
             </div>
             <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
@@ -51,18 +51,18 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { projectsService } from '../services/ProjectsService'
+import { backlogsService } from '../services/BacklogsService'
 export default {
   setup() {
     const state = reactive({
-      newProject: {}
+      newBacklogs: {}
     })
     return {
       state,
-      async createProject() {
+      async createBacklogs() {
         // console.log(state.newProject)
-        await projectsService.create(state.newProject)
-        state.newProject = {}
+        await backlogsService.create(state.newBacklogs)
+        state.newBacklogs = {}
         // jquery to close modal
       }
     }
