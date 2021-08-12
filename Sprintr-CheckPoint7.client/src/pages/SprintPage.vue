@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { computed, watchEffect } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { sprintsService } from '../services/SprintsService'
 import Pop from '../utils/Notifier'
 import { useRoute } from 'vue-router'
@@ -15,7 +15,7 @@ import { AppState } from '../AppState'
 export default {
   setup() {
     const route = useRoute()
-    watchEffect(async() => {
+    onMounted(async() => {
       try {
         if (!route.params.sprintId) {
           return
