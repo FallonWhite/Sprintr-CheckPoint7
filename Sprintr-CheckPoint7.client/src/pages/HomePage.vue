@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="row mt-4">
       <div class="col-12 text-right">
-        <button class="btn btn-outline-info" data-target="#project-modal" data-toggle="modal">
-          Create Project
+        <button class="btn btn-info" data-target="#project-modal" data-toggle="modal">
+          <b>Create Project</b>
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/season_change_f99v.png"
+          src="../assets/img/leaves.png"
           height="90"
         />
       </div>
@@ -23,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
+          <router-link :to="{ name: 'Home' }" class="nav-link text-info">
+            <b>Home</b>
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'Project' }" class="nav-link">
-            Project
+          <router-link :to="{ name: 'Project' }" class="nav-link text-warning">
+            <b><i>Project</i></b>
           </router-link>
         </li>
       </ul>
