@@ -28,11 +28,11 @@
           <form>
             <div class="form-group">
               <label for="project.name" class="col-form-label">Name:</label>
-              <input type="text" class="form-control" id="project.name">
+              <input type="text" class="form-control" placeholder="Project Name..." id="project.name">
             </div>
             <div class="form-group">
               <label for="project.description" class="col-form-label">Description:</label>
-              <textarea class="form-control" id="project.description"></textarea>
+              <textarea class="form-control" placeholder="Project Description..." id="project.description"></textarea>
             </div>
           </form>
         </div>
@@ -40,7 +40,7 @@
           <button type="button" class="btn btn-outline-dark btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary" @click="createProject">
+          <button type="submit" class="btn btn-primary" @click="createProject">
             Create
           </button>
         </div>

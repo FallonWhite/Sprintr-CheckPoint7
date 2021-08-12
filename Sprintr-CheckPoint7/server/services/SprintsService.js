@@ -28,7 +28,7 @@ class SprintsService {
     return sprint
   }
 
-  async destroySprint(id, userId) {
+  async destroy(id, userId) {
     return await dbContext.Projects.findOneAndDelete({ _id: id, creatorId: userId })// ?
   }
 }
