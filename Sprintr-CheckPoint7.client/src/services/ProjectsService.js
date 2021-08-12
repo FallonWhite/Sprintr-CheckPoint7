@@ -1,5 +1,6 @@
 
 import { AppState } from '../AppState'
+import { router } from '../router'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -34,6 +35,7 @@ class ProjectsService {
   async create(body) {
     const res = await api.post('api/projects', body)
     AppState.projects.push(res.data)
+    router.push({ name: 'Backlog', params: { id: res.data.id } })
     // return res.data.id
   }
 
@@ -48,6 +50,7 @@ class ProjectsService {
     await api.delete('api/projects/' + id)
     AppState.projects = AppState.projects.filter(p => p.id !== id)
     // eslint-disable-next-line no-console
+    router.push({ name: 'Home' })
     console.log('Deleted Successfully')
   }
 }

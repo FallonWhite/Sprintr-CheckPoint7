@@ -21,6 +21,7 @@ class SprintsService {
 
   async create(body) {
     const res = await api.post('api/sprints', body)
+    console.log(res.data)
     AppState.sprints.push(res.data)
     return res.data.id
   }

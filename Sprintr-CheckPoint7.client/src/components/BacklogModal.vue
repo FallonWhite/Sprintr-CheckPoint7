@@ -1,7 +1,7 @@
 <template>
   <!-- Modal -->
   <div class="modal fade"
-       id="project-modal"
+       id="backlog-modal"
        tabindex="-1"
        role="dialog"
        aria-labelledby="modelTitleId"
@@ -52,8 +52,10 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { backlogsService } from '../services/BacklogsService'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     const state = reactive({
       newBacklogs: {}
     })
@@ -61,6 +63,7 @@ export default {
       state,
       async createBacklogs() {
         // console.log(state.newProject)
+        state.newBacklogs.projectId = route.params.id
         await backlogsService.create(state.newBacklogs)
         state.newBacklogs = {}
         // jquery to close modal

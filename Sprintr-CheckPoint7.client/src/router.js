@@ -21,6 +21,11 @@ const routes = [
       name: 'Backlog',
       component: loadPage('BacklogPage'),
       beforeEnter: authGuard // need to make a backlog page
+    }, {
+      path: 'sprints/:sprintId',
+      name: 'Sprint',
+      component: loadPage('SprintPage'),
+      beforeEnter: authGuard
     }]
   },
   {
