@@ -6,9 +6,6 @@
           <button class="btn btn-info text-center mr-4" data-target="#project-modal" data-toggle="modal">
             <b>Create Project</b>
           </button>
-          <button class="btn btn-info text-center ml-4" data-target="#sprint" data-toggle="">
-            <b>Sprint 1</b>
-          </button>
           Welcome to Your Project Page
           <button class="btn btn-info text-center ml-4" data-target="#backlog-modal" data-toggle="modal">
             <b>Create Backlog Item</b>
@@ -17,6 +14,15 @@
             <b>Create Sprint</b>
           </button>
         </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2" v-for="s in sprints" :key="s.id">
+        <router-link :to="{name: 'Sprint', params: {id: s.projectId, sprintId: s.id}}" class="text-dark">
+          <button class="btn btn-info text-center ml-4">
+            <b>{{ s.name }}</b>
+          </button>
+        </router-link>
       </div>
     </div>
     <div class="row">
@@ -36,24 +42,26 @@ import { projectsService } from '../services/ProjectsService'
 // import { tasksService } from '../services/TasksService'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
 // import ProjectCard from '../components/ProjectCard.vue'
 // import Backlog from '../components/Backlog.vue'
 // import TaskCard from '../components/TaskCard.vue'
 export default {
   name: 'Home',
   setup() {
+    const route = useRoute()
     onMounted(async() => {
       try {
         await projectsService.getAll()
-        // await backlogsService.get()
-        // await tasksService.getById(id)
+        await projectsService.getBacklogByProject(route.params.id)
+        await projectsService.getSprintByProject(route.params.id)
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
     return {
-      projects: computed(() => AppState.projects)
-      // backlogs: computed(() => AppState.backlogs)
+      projects: computed(() => AppState.projects),
+      sprints: computed(() => AppState.sprints)
       // tasks: computed(() => AppState.tasks)
     }
   },

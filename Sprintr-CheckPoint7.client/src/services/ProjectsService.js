@@ -17,12 +17,12 @@ class ProjectsService {
   }
 
   async getBacklogByProject(id) {
-    const res = await api.get('api/projects/', id)
+    const res = await api.get('api/projects/' + id + '/backlogs')
     AppState.backlogs = res.data
   }
 
   async getSprintByProject(id) {
-    const res = await api.get('api/projects/', id)
+    const res = await api.get('api/projects/' + id + '/sprints')
     AppState.sprints = res.data
   }
 
