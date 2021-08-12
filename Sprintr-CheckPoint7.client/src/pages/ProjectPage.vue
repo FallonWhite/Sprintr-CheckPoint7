@@ -6,7 +6,13 @@
           <button class="btn btn-info text-center mr-4" data-target="#project-modal" data-toggle="modal">
             <b>Create Project</b>
           </button>
+          <button class="btn btn-info text-center ml-4" data-target="#sprint" data-toggle="">
+            <b>Sprint 1</b>
+          </button>
           Welcome to Your Project Page
+          <button class="btn btn-info text-center ml-4" data-target="#backlog-modal" data-toggle="modal">
+            <b>Create Backlog Item</b>
+          </button>
           <button class="btn btn-info text-center ml-4" data-target="#task-modal" data-toggle="modal">
             <b>Create Task</b>
           </button>
@@ -14,7 +20,7 @@
       </div>
     </div>
     <div class="row">
-      <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
+      <!-- <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" /> -->
       <!-- <Backlog v-for="b in backlog" :key="b.id" :backlog-prop="b" /> -->
       <!-- <TaskCard v-for="t in tasks" :key="t.id" :task-prop="t" /> -->
     </div>
@@ -30,7 +36,7 @@ import { projectsService } from '../services/ProjectsService'
 // import { tasksService } from '../services/TasksService'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
-import ProjectCard from '../components/ProjectCard.vue'
+// import ProjectCard from '../components/ProjectCard.vue'
 // import Backlog from '../components/Backlog.vue'
 // import TaskCard from '../components/TaskCard.vue'
 export default {
@@ -52,7 +58,7 @@ export default {
     }
   },
   components: {
-    ProjectCard
+    // ProjectCard
     // Backlog
     // TaskCard
   }
