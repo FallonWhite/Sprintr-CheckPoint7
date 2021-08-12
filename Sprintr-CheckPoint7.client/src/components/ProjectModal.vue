@@ -11,9 +11,24 @@
       <div class="modal-content">
         <div class="modal-header bg-dark">
           <h5 class="project-modal">
-            <!-- {{ project.name }}
-            {{ project.description }} -->
+            {{ project.name }}
           </h5>
+          <div class="row">
+            <div class="col">
+              <label for="head">Create project</label>
+            </div>
+            <div class="col">
+              <Label>Name</Label>
+              <input type="text" placeholder="Name ...">
+            </div>
+            <div class="col">
+              <label for="">Description</label>
+              <textarea name="des" id="des" cols="30" rows="10">Description</textarea>
+            </div>
+            <div class="col">
+              <button>Create</button>
+            </div>
+          </div>
           <button type="button" class="close text-light">
             <span aria-hidden="true">&times;</span>
           </button>
