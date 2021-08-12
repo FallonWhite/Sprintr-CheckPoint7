@@ -17,7 +17,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
+          <h5 class="modal-title" id="projectModalLabel">
             New message
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -40,7 +40,7 @@
           <button type="button" class="btn btn-outline-dark btn-secondary" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" @click="createProject">
             Create
           </button>
         </div>
@@ -62,20 +62,15 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
+<style lang="scss>
 .modal-backdrop.show{
   opacity: 1!important;
   background:  var(--fade);
-  backdrop-filter: blur(30px) brightness(.5) contrast(.85);
+  backdrop-filter: blur(10px) brightness(.5) contrast(.75);
 }
 
 .modal-body{
   height: 50vh;
   overflow-y: auto;
-}
-
-.cover {
-  object-fit: cover;
 }
 </style>
