@@ -34,16 +34,16 @@
               <label for="project.description" class="col-form-label">Description:</label>
               <textarea class="form-control" placeholder="Project Description..." id="project.description"></textarea>
             </div>
+            <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
+              <b><i>Close</i></b>
+            </button>
+            <button type="submit" class="btn btn-outline-dark btn-info" @submit="createProject">
+              <b>Create</b>
+            </button>
           </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark btn-warning" data-dismiss="modal">
-            <b><i>Close</i></b>
-          </button>
-          <button type="submit" class="btn btn-outline-dark btn-info" @click="createProject">
-            <b>Create</b>
-          </button>
-        </div>
+      </div>
+      <div class="modal-footer">
       </div>
     </div>
   </div>
