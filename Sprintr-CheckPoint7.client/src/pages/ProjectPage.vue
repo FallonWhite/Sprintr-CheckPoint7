@@ -17,6 +17,8 @@
       <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
       <!-- <TaskCard v-for="t in tasks" :key="t.id" :task-prop="t" /> -->
     </div>
+    <router-view>
+    </router-view>
   </div>
 </template>
 

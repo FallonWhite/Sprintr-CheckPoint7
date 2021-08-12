@@ -13,9 +13,14 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/project',
+    path: '/project/:id',
     name: 'Project',
-    component: loadPage('ProjectPage')
+    component: loadPage('ProjectPage'),
+    children: [{
+      path: 'backlogs',
+      name: 'Backlog',
+      component: loadPage('BacklogPage') // need to make a backlog page
+    }]
   },
   {
     path: '/account',

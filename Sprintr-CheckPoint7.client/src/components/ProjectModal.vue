@@ -25,7 +25,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form @submit.prevent="createProject">
             <div class="form-group">
               <label for="project.name" class="col-form-label">Name:</label>
               <input type="text" class="form-control" placeholder="Project Name..." id="project.name">
@@ -37,7 +37,7 @@
             <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>
-            <button type="submit" class="btn btn-outline-dark btn-info" @submit="createProject">
+            <button type="submit" class="btn btn-outline-dark btn-info">
               <b>Create</b>
             </button>
           </form>
@@ -50,15 +50,19 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
 export default {
-  // props: {
-  //   project: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
   setup() {
-    return {}
+    const state = reactive({
+      newProject: {}
+    })
+    return {
+      state,
+      createProject() {
+        // console.log('helloo')
+        // NOTE send to the service to create
+      }
+    }
   }
 }
 </script>

@@ -17,7 +17,8 @@
           Remove
         </button>
       </div>
-      <router-link router-link :to="{ name: 'Project', params: {id: projectProp.id } }" @click="projectPage">
+      <router-link router-link :to="{ name: 'Backlog', params: {id: projectProp.id } }">
+        hi
       </router-link>
     </div>
   </div>
