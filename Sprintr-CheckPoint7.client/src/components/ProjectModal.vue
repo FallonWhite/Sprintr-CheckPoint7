@@ -28,11 +28,11 @@
           <form @submit.prevent="createProject">
             <div class="form-group">
               <label for="project.name" class="col-form-label">Name:</label>
-              <input type="text" class="form-control" placeholder="Project Name..." id="project.name">
+              <input v-model="state.newProject.name" type="text" class="form-control" placeholder="Project Name..." id="project.name">
             </div>
             <div class="form-group">
               <label for="project.description" class="col-form-label">Description:</label>
-              <textarea class="form-control" placeholder="Project Description..." id="project.description"></textarea>
+              <textarea v-model="state.newProject.description" class="form-control" placeholder="Project Description..." id="project.description"></textarea>
             </div>
             <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
@@ -51,6 +51,7 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
+import { projectsService } from '../services/ProjectsService'
 export default {
   setup() {
     const state = reactive({
@@ -58,9 +59,11 @@ export default {
     })
     return {
       state,
-      createProject() {
-        // console.log('helloo')
-        // NOTE send to the service to create
+      async createProject() {
+        // console.log(state.newProject)
+        await projectsService.create(state.newProject)
+        state.newProject = {}
+        // jquery to close modal
       }
     }
   }

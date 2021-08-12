@@ -34,7 +34,7 @@ class ProjectsService {
   async create(body) {
     const res = await api.post('api/projects', body)
     AppState.projects.push(res.data)
-    return res.data.id
+    // return res.data.id
   }
 
   async edit(id, body) {
