@@ -7,13 +7,6 @@
        aria-labelledby="modelTitleId"
        aria-hidden="true"
   >
-    <!-- <div class="modal fade"
-         id="exampleModal"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true"
-    > -->
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -52,6 +45,9 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { projectsService } from '../services/ProjectsService'
+// import Pop from '../utils/Notifier'
+// import $ from 'jquery'
+
 export default {
   setup() {
     const state = reactive({
@@ -60,14 +56,15 @@ export default {
     return {
       state,
       async createProject() {
-        // console.log(state.newProject)
         await projectsService.create(state.newProject)
         state.newProject = {}
         // jquery to close modal
+        // $('#create-project').modal('hide')
       }
     }
   }
 }
+
 </script>
 <style lang="scss">
 .modal-backdrop.show{
