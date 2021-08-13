@@ -40,14 +40,34 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
+import { notesService } from '../services/NotesService'
+import Pop from '../utils/Notifier'
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { useRouter } from 'vue-router'
 export default {
   name: 'Component',
   setup() {
-    return {}
-  }
+    const router = useRouter()
+    const state = reactive({
+      newNote: {}
+    })
+    return {
+      state,
+      account: computed(() => AppState.account),
+      async createNote() {
+        try {
+          const newNote = await notesService.create(state.newNote)
+          state.newNote = {}
+          Pop.toast('Note successfuly Created')
+          router.push({ name: 'NotePage', params: { id: newNote.id } })
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
+  },
+  components: {}
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
