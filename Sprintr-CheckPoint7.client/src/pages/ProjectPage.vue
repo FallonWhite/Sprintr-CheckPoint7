@@ -2,24 +2,30 @@
   <div class="project container-fluid component">
     <div class="row mt-4">
       <div class="col-12">
-        <h1 class="text-info p-3 pb-1 m-1" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
-          <button class="btn btn-info text-center mr-4" data-target="#project-modal" data-toggle="modal">
+        <h1 class="text-info p-4 m-4" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
+          <button class="btn btn-info text-center mr-5" data-target="#project-modal" data-toggle="modal">
             <b>Create Project</b>
           </button>
           Welcome to Your Project Page
           <button class="btn btn-info text-center ml-4" data-target="#backlog-modal" data-toggle="modal">
             <b>Create Backlog Item</b>
           </button>
-          <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
+          <!-- <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
             <b>Create Sprint</b>
-          </button>
+          </button> -->
         </h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-info" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
+      <h2 class="p-2 ml-4">
+        Sprints:
+      </h2>
+      <button class="btn btn-info text-center ml-2" data-target="#sprint-modal" data-toggle="modal">
+        <b>Create Sprint</b>
+      </button>
       <div class="col-2" v-for="s in sprints" :key="s.id">
         <router-link :to="{name: 'Sprint', params: {id: s.projectId, sprintId: s.id}}" class="text-dark">
-          <button class="btn btn-info text-center ml-4">
+          <button class="btn btn-info text-center">
             <b>{{ s.name }}</b>
           </button>
         </router-link>
