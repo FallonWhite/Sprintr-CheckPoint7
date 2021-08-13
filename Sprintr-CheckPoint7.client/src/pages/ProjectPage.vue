@@ -25,7 +25,7 @@
       </button>
       <div class="col-2" v-for="s in sprints" :key="s.id">
         <router-link :to="{name: 'Sprint', params: {id: s.projectId, sprintId: s.id}}" class="text-dark">
-          <button class="btn btn-info text-center">
+          <button class="btn btn-info text-center mt-3 ml-0">
             <b>{{ s.name }}</b>
           </button>
         </router-link>
