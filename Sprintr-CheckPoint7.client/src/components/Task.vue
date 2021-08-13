@@ -48,7 +48,6 @@ import Pop from '../utils/Notifier'
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRoute, useRouter } from 'vue-router'
-import $ from 'jquery'
 export default {
   name: 'Component',
   props: {
