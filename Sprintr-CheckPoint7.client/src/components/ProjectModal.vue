@@ -46,7 +46,7 @@
 import { reactive } from '@vue/reactivity'
 import { projectsService } from '../services/ProjectsService'
 // import Pop from '../utils/Notifier'
-// import $ from 'jquery'
+import $ from 'jquery'
 
 export default {
   setup() {
@@ -59,7 +59,7 @@ export default {
         await projectsService.create(state.newProject)
         state.newProject = {}
         // jquery to close modal
-        // $('#create-project').modal('hide')
+        $('#project-modal').modal('hide')
       }
     }
   }

@@ -80,7 +80,7 @@ export default {
         state.newBacklogs.projectId = route.params.id
         await backlogsService.create(state.newBacklogs)
         state.newBacklogs = {}
-        $('#create-project').modal('hide')
+        $('#backlog-modal').modal('hide')
         // jquery to close modal
       }
     }

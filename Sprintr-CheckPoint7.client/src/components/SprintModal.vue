@@ -43,6 +43,7 @@
 import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
 import { sprintsService } from '../services/SprintsService'
+import $ from 'jquery'
 export default {
   setup() {
     const route = useRoute()
@@ -55,6 +56,7 @@ export default {
         state.newSprints.projectId = route.params.id
         await sprintsService.create(state.newSprints)
         state.newSprints = {}
+        $('#sprint-modal').modal('hide')
       }
     }
   }
