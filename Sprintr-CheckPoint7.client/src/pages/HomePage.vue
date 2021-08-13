@@ -7,10 +7,7 @@
         </button>
       </div>
     </div>
-    <div class="row"
-         style="  display: flex;
-justify-content: space-around;"
-    >
+    <div class="row">
       <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
     </div>
   </div>

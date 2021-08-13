@@ -34,6 +34,19 @@
               <label for="backlogs.body" class="col-form-label">Body:</label>
               <textarea v-model="state.newBacklogs.body" class="form-control" placeholder="Backlog Item Body..." id="backlogs.body"></textarea>
             </div>
+            <!-- <div class="form-group">
+              <label for="color" class="form-label"><b>Background Color:</b></label>
+              <select class="form-select" v-model="state.newBacklogs.color" id="backlogs.color" onchange="state.newBacklogs.color = this.value">
+                <option value="darkmagenta" style="background: darkmagenta">
+                  Magenta
+                </option>
+                <option value="teal" style="background: info">
+                  Teal
+                </option>
+                <option value="slategrey" style="background: slategrey">
+                  Grey
+                </option>
+              </select> -->
             <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>
@@ -43,8 +56,8 @@
           </form>
         </div>
       </div>
-      <div class="modal-footer">
-      </div>
+    </div>
+    <div class="modal-footer">
     </div>
   </div>
 </template>
@@ -53,6 +66,7 @@
 import { reactive } from '@vue/reactivity'
 import { backlogsService } from '../services/BacklogsService'
 import { useRoute } from 'vue-router'
+import $ from 'jquery'
 export default {
   setup() {
     const route = useRoute()
@@ -66,6 +80,7 @@ export default {
         state.newBacklogs.projectId = route.params.id
         await backlogsService.create(state.newBacklogs)
         state.newBacklogs = {}
+        $('#create-project').modal('hide')
         // jquery to close modal
       }
     }
