@@ -11,7 +11,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="backlogModalLabel">
-            Create New Backlog Item!
+            Create New Backlog!
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -40,17 +40,17 @@
                   Grey
                 </option>
               </select> -->
-            <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
+            <button type="button" class="btn btn-outline-info btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>
-            <button type="submit" class="btn btn-outline-dark btn-info">
+            <button type="submit" class="btn btn-outline-info btn-info">
               <b>Create</b>
             </button>
           </form>
         </div>
       </div>
     </div>
-    <div class="modal-footer">
+    <div>
     </div>
   </div>
 </template>
@@ -69,12 +69,10 @@ export default {
     return {
       state,
       async createBacklogs() {
-        // console.log(state.newProject)
         state.newBacklogs.projectId = route.params.id
         await backlogsService.create(state.newBacklogs)
         state.newBacklogs = {}
         $('#backlog-modal').modal('hide')
-        // jquery to close modal
       }
     }
   }

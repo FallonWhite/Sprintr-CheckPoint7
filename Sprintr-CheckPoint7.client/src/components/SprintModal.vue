@@ -17,7 +17,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="create">
+          <form @submit.prevent="createSprints">
             <div class="form-group">
               <label for="sprints.name" class="col-form-label">Name:</label>
               <input v-model="state.newSprints.name" type="text" class="form-control" placeholder="Sprint Name..." id="sprints.name">
@@ -26,10 +26,10 @@
               <label for="sprints.body" class="col-form-label">Body:</label>
               <textarea v-model="state.newSprints.body" class="form-control" placeholder="Sprint Body..." id="sprints.body"></textarea>
             </div>
-            <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
+            <button type="button" class="btn btn-outline-info btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>
-            <button type="submit" class="btn btn-outline-dark btn-info">
+            <button type="submit" class="btn btn-outline-info btn-info">
               <b>Create</b>
             </button>
           </form>
@@ -41,8 +41,8 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { useRoute } from 'vue-router'
 import { sprintsService } from '../services/SprintsService'
+import { useRoute } from 'vue-router'
 import $ from 'jquery'
 export default {
   setup() {
@@ -53,7 +53,7 @@ export default {
     return {
       state,
       async createSprints() {
-        state.newSprints.project = route.params.id
+        state.newSprints.projectId = route.params.id
         await sprintsService.create(state.newSprints)
         state.newSprints = {}
         $('#sprint-modal').modal('hide')

@@ -6,7 +6,7 @@
       </router-link>
     </p>
     <h5 class="pt-3 hoverable" @click="destory(sprint.id, project.id)">
-      🗑
+      Delete
     </h5>
   </div>
 </template>
@@ -14,7 +14,7 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import { sprintsService } from '../services/SprinstService'
+import { sprintsService } from '../services/SprintsService'
 import { projectsService } from '../services/ProjectsService'
 export default {
   props: {
