@@ -23,7 +23,7 @@ class SprintsService {
   }
 
   async update(body) {
-    const sprint = await dbContext.sprints.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    const sprint = await dbContext.sprints.findOneAndUpdate({ _id: body.id, creatorId: body.creatorId }, body, { new: true, runValidators: true })
     // I would like to have a clearification about (body.id, body, { new: true, runValidators: true })
     return sprint
   }

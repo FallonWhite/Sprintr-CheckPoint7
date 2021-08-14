@@ -32,7 +32,7 @@
           >
         </div>
         <div class="modal-footer">
-          <button type="button" @click.stop="create" class="btn btn-primary" data-toggle="modal" data-target="#create">
+          <button type="button" @click.stop="create" class="btn btn-primary text-dark" data-toggle="modal" data-target="#create">
             Create Tasks
           </button>
         </div>

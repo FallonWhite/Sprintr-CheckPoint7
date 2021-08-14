@@ -33,8 +33,7 @@ class TasksService {
   }
 
   async update(body) {
-    const task = await dbContext.tasks.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
-    return task
+    const task = await dbContext.tasks.findOneAndUpdate({ _id: body.id, creatorId: body.creatorId }, body, { new: true, runValidators: true })
   }
 
   async destroy(id, userId) {

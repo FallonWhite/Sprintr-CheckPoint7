@@ -23,7 +23,7 @@ class BacklogsService {
   }
 
   async update(body) {
-    const backlog = await dbContext.backlogs.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    const backlog = await dbContext.backlogs.findOneAndUpdate({ _id: body.id, creatorId: body.creatorId }, body, { new: true, runValidators: true })
     return backlog
   }
 

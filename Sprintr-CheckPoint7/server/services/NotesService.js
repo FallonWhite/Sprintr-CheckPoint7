@@ -28,8 +28,7 @@ class NotesService {
   }
 
   async update(body) {
-    const note = await dbContext.notes.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
-    return note
+    const note = await dbContext.notes.findOneAndUpdate({ _id: body.id, creatorId: body.creatorId }, body, { new: true, runValidators: true })
   }
 
   async destroyNote(id, userId) {
