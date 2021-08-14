@@ -75,27 +75,38 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { tasksService } from '../services/TasksService'
-
+import $ from 'jquery'
+import { router } from '../router'
 export default {
   props: {
-    taskProp: {
-      type: Object,
-      required: true
-    }
+    task: { type: Object, required: true }
   },
   setup(props) {
+    const state = reactive({
+      newTask: {}
+    })
+    const notes = computed(() => AppState.notes[props.task.id] || [])
+    onMounted(async() => {
+      try {
+        await tasksService.getNotesByTaskId(props.task.id)
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
     return {
-      account: computed(() => AppState.account),
-      async destroyTask() {
+      state,
+      notes,
+      sprints: computed(() => AppState.sprints),
+      async editTask() {
         try {
-          if (await Pop.confirm()) {
-            await tasksService.destroy(props.taskProp.id)
-            Pop.toast('Task Removed', 'Success!')
-          }
+          const newId = await tasksService.editTask(state.newTask, props.task.id)
+          $('#taskDetailsModal' + props.task.id).modal('hide')
+          router.push({ name: 'SprintPage', params: { sprintId: newId } })
+          Pop.toast('Successfully Edited', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
         }
@@ -104,10 +115,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.card{
-  width: 100vh;
-}
-
-</style>
