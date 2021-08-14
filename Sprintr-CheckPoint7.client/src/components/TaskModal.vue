@@ -1,36 +1,73 @@
 <template>
   <div class="modal fade"
-       id="sprint-modal"
+       :id="'createTaskModal' + backlog.id"
        tabindex="-1"
        role="dialog"
-       aria-labelledby="exampleModalLabel"
+       aria-labelledby="modelTitleId"
        aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Create New Sprint!
+          <h5 class="modal-title">
+            Create Task
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createSprints">
+          <form @submit.prevent="createTask">
             <div class="form-group">
-              <label for="sprints.name" class="col-form-label">Name:</label>
-              <input v-model="state.newSprints.name" type="text" class="form-control" placeholder="Sprint Name..." id="sprints.name">
+              <select
+                name="status"
+                v-model="state.newTask.status"
+                class="form-control"
+                :aria-describedby="backlog.name+'TaskStatus'"
+                required
+              >
+                <option value="Pending">
+                  Pending
+                </option>
+                <option value="In-Progress">
+                  In-Progress
+                </option>
+                <option value="Review">
+                  Review
+                </option>
+                <option value="Done">
+                  Done
+                </option>
+              </select>
+              <small :id="backlog.name+'TaskStatus'" class="text-muted">Input Task Status</small>
             </div>
             <div class="form-group">
-              <label for="sprints.body" class="col-form-label">Body:</label>
-              <textarea v-model="state.newSprints.body" class="form-control" placeholder="Sprint Body..." id="sprints.body"></textarea>
+              <input type="text"
+                     name="body"
+                     v-model="state.newTask.body"
+                     class="form-control"
+                     placeholder="Task Description..."
+                     :aria-describedby="backlog.name+'TaskDescription'"
+                     required
+              >
+              <small :id="backlog.name+'TaskDescription'" class="text-muted">Input Task Description</small>
             </div>
-            <button type="button" class="btn btn-outline-dark btn-warning m-2" data-dismiss="modal">
-              <b><i>Close</i></b>
+            <div class="form-group">
+              <input type="number"
+                     name="weight"
+                     v-model="state.newTask.weight"
+                     class="form-control"
+                     placeholder="Task Weight..."
+                     :aria-describedby="backlog.name+'TaskWeight'"
+                     required
+              >
+              <small :id="backlog.name+'TaskWeight'" class="text-muted">Input Task Weight</small>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
             </button>
-            <button type="submit" class="btn btn-outline-dark btn-info">
-              <b>Create</b>
+            <button type="submit" class="btn btn-primary">
+              Submit
             </button>
           </form>
         </div>
@@ -41,38 +78,36 @@
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { useRoute } from 'vue-router'
-import { sprintsService } from '../services/SprintsService'
+import Pop from '../utils/Notifier'
+import { tasksService } from '../services/TasksService'
 import $ from 'jquery'
 export default {
-  setup() {
-    const route = useRoute()
+  props: {
+    backlog: { type: Object, required: true }
+  },
+  setup(props) {
     const state = reactive({
-      newSprints: {}
+      newTask: {
+        backlogId: props.backlog.id,
+        projectId: props.backlog.projectId
+      }
     })
     return {
       state,
-      async createSprints() {
-        state.newSprints.projectId = route.params.id
-        await sprintsService.create(state.newSprints)
-        state.newSprints = {}
-        $('#sprint-modal').modal('hide')
+      async createTask() {
+        try {
+          await tasksService.createTask(state.newTask)
+          state.newTask = {
+            backlogId: props.backlog.id,
+            projectId: props.backlog.projectId
+          }
+          $('#createTaskModal' + props.backlog.id).modal('hide')
+          Pop.toast('Successfully Created')
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
       }
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.modal-backdrop.show{
-  opacity: 1!important;
-  background:  var(--fade);
-  backdrop-filter: blur(10px) brightness(.5) contrast(.75);
-}
-
-.modal-body{
-  height: 50vh;
-  overflow-y: auto;
-  background-color: dark;
-}
-</style>
