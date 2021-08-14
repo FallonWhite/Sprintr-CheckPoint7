@@ -17,7 +17,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="editTask" class="d-flex col-12 pb-2 line">
+          <form @submit.prevent="edit" class="d-flex col-12 pb-2 line">
             <div class="form-group m-0 w-100">
               <select
                 name="status"
@@ -101,9 +101,9 @@ export default {
       state,
       notes,
       sprints: computed(() => AppState.sprints),
-      async editTask() {
+      async edit() {
         try {
-          const newId = await tasksService.editTask(state.newTask, props.task.id)
+          const newId = await tasksService.edit(state.newTask, props.task.id)
           $('#taskDetailsModal' + props.task.id).modal('hide')
           router.push({ name: 'SprintPage', params: { sprintId: newId } })
           Pop.toast('Successfully Edited', 'success')

@@ -1,7 +1,7 @@
 <template>
   <div class="row bg-info rounded shadow m-2">
     <div class="col-12 d-flex align-items-center my-2">
-      <p class="m-0 mr-2 pointer" title="Delete Task" @click="deleteTask">
+      <p class="m-0 mr-2 pointer" title="Delete Task" @click="destroy">
         <span class="fas fa-times"></span>
       </p>
       <h5 class="m-0 mr-auto pointer"
@@ -31,10 +31,10 @@ export default {
   },
   setup(props) {
     return {
-      async deleteTask() {
+      async destroy() {
         if (await Pop.confirm()) {
           try {
-            await tasksService.deleteTask(props.task.id, props.task.backlogId)
+            await tasksService.destroy(props.task.id, props.task.backlogId)
           } catch (error) {
             Pop.toast(error, 'error')
           }

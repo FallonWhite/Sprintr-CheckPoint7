@@ -1,6 +1,6 @@
 <template>
   <div class="modal fade"
-       :id="'createTaskModal' + backlog.id"
+       :id="'createModal' + backlog.id"
        tabindex="-1"
        role="dialog"
        aria-labelledby="modelTitleId"
@@ -17,7 +17,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createTask">
+          <form @submit.prevent="create">
             <div class="form-group">
               <select
                 name="status"
@@ -94,14 +94,14 @@ export default {
     })
     return {
       state,
-      async createTask() {
+      async create() {
         try {
-          await tasksService.createTask(state.newTask)
+          await tasksService.create(state.newTask)
           state.newTask = {
             backlogId: props.backlog.id,
             projectId: props.backlog.projectId
           }
-          $('#createTaskModal' + props.backlog.id).modal('hide')
+          $('#createModal' + props.backlog.id).modal('hide')
           Pop.toast('Successfully Created')
         } catch (error) {
           Pop.toast(error, 'error')
