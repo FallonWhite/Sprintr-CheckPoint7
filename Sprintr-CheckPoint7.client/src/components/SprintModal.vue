@@ -17,7 +17,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form @submit.prevent="createSprints">
+          <form @submit.prevent="create">
             <div class="form-group">
               <label for="sprints.name" class="col-form-label">Name:</label>
               <input v-model="state.newSprints.name" type="text" class="form-control" placeholder="Sprint Name..." id="sprints.name">
@@ -53,7 +53,7 @@ export default {
     return {
       state,
       async createSprints() {
-        state.newSprints.projectId = route.params.id
+        state.newSprints.project = route.params.id
         await sprintsService.create(state.newSprints)
         state.newSprints = {}
         $('#sprint-modal').modal('hide')

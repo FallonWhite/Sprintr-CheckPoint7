@@ -1,73 +1,52 @@
 <template>
-  <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Create
-          </h5>
-          <button type="button" class="btn-close btn btn-outline-danger" data-dismiss="modal" aria-label="Close">
-            Delete
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- VModel -->
-          <input
-            class="form-control"
-            type="text"
-            v-model="state.newNote.name"
-            id="name"
-            placeholder="Name Note..."
-          >
-          <br>
-          <textarea
-            class="form-control"
-            id="description"
-            v-model="state.newNote.description"
-            rows="6"
-            placeholder="Description..."
-          >
-          </textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" @click="create" class="btn btn-primary" data-toggle="modal" data-target="#create">
-            Submit
-          </button>
-        </div>
-      </div>
+  <div class="row bg-secondary rounded shadow mx-1 my-3">
+    <div class="col-12 d-flex align-items-center mt-2">
+      <img class="profile-img mr-3" :src="note.creator.picture" :alt="note.creator.name">
+      <p class="m-0 mr-auto">
+        <b>{{ note.creator.name }}</b>
+      </p>
+      <p class="m-0 mr-2 pointer" title="Delete Task" @click="destroy">
+        <span class="fas fa-times"></span>
+      </p>
+    </div>
+    <div class="col-12 d-flex align-items-center my-2">
+      <p class="m-0">
+        {{ note.body }}
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity'
 import { notesService } from '../services/NotesService'
 import Pop from '../utils/Notifier'
-import { computed } from '@vue/runtime-core'
-import { AppState } from '../AppState'
-import { useRouter } from 'vue-router'
 export default {
-  name: 'Component',
-  setup() {
-    const router = useRouter()
-    const state = reactive({
-      newNote: {}
-    })
+  props: {
+    note: { type: Object, required: true }
+  },
+  setup(props) {
     return {
-      state,
-      account: computed(() => AppState.account),
-      async createNote() {
+      async destroy() {
         try {
-          const newNote = await notesService.create(state.newNote)
-          state.newNote = {}
-          Pop.toast('Note successfuly Created')
-          router.push({ name: 'NotePage', params: { id: newNote.id } })
+          if (await Pop.confirm()) {
+            await notesService.destroy(props.note.id, props.note.taskId)
+            Pop.toast('Successfully Deleted!', 'success')
+          }
         } catch (error) {
           Pop.toast(error, 'error')
         }
       }
     }
-  },
-  components: {}
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.profile-img{
+  height: 7vh;
+  width: 7vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+</style>

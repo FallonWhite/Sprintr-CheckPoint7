@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-12">
       <Sprint :sprint="activeSprint" />
+      <div class="row">
+        <SprintCard v-for="s in sprints" :key="s.id" :sprint-prop="s" />
+      </div>
     </div>
   </div>
 </template>

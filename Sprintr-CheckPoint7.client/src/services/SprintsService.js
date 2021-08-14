@@ -9,9 +9,9 @@ class SprintsService {
     AppState.sprints = res.data
   }
 
-  async getById(id) {
-    const res = await api.get('api/sprints/', id)
-    AppState.sprints = res.data
+  async setActiveSprint(id) {
+    const res = await api.get('api/sprints/' + id)
+    AppState.activeSprints = res.data
   }
 
   async getTasksBySprintId(id) {
@@ -19,10 +19,10 @@ class SprintsService {
     AppState.sprints = res.data // would this be AppState.tasks = res.data??
   }
 
-  async create(body) {
-    const res = await api.post('api/sprints', body)
+  async create(newSprint) {
+    const res = await api.post('api/sprints', newSprint)
     // console.log(res.data)
-    AppState.sprints.push(res.data)
+    AppState.sprints.push = res.data
     return res.data.id
   }
 
