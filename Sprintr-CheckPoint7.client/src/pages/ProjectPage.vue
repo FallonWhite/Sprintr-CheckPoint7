@@ -10,20 +10,20 @@
           <button class="btn btn-info text-center ml-4 text-dark" data-target="#backlog-modal" data-toggle="modal">
             <b>Create Backlog Item</b>
           </button>
-          <!-- <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
+          <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
             <b>Create Sprint</b>
-          </button> -->
+          </button>
         </h1>
       </div>
     </div>
     <div class="row text-info" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
-      <h2 class="p-2 ml-4">
+      <!-- <h2 class="p-2 ml-4">
         Sprints:
       </h2>
       <button class="btn btn-info text-center ml-2 text-dark" data-target="#sprint-modal" data-toggle="modal">
         <b>Create Sprint</b>
-      </button>
-      <div class="col-2" v-for="s in sprints" :key="s.id">
+      </button> -->
+      <div class="col-12" v-for="s in sprints" :key="s.id">
         <router-link :to="{name: 'Sprint', params: {id: s.projectId, sprintId: s.id}}" class="text-dark">
           <button class="btn btn-info text-center text-dark mt-3 ml-0">
             <b>{{ s.name }}</b>

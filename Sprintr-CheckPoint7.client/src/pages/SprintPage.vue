@@ -1,39 +1,20 @@
 <template>
   <div class="row">
-    <div class="col-12">
-      <Sprint :sprint="activeSprint" />
-      <div class="row">
-        <SprintCard v-for="s in sprints" :key="s.id" :sprint-prop="s" />
-      </div>
+    <!-- activeSprint Card Here -->
+    <div class="col-12" v-for="s in sprints" :key="s.id">
+      <SprintsCard :sprints-prop="s" />
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
-import { sprintsService } from '../services/SprintsService'
-import Pop from '../utils/Notifier'
-import { useRoute } from 'vue-router'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 export default {
   setup() {
-    const route = useRoute()
-    onMounted(async() => {
-      try {
-        if (!route.params.sprintId) {
-          return
-        }
-        await sprintsService.setActiveSprint(route.params.sprintId)
-      } catch (error) {
-        Pop.toast(error, 'error')
-      }
-    })
     return {
-      activeSprint: computed(() => AppState.activeSprint)
+      sprints: computed(() => AppState.sprints)
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>

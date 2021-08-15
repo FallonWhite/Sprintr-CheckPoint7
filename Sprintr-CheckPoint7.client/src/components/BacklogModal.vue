@@ -1,5 +1,4 @@
 <template>
-  <!-- Modal -->
   <div class="modal fade"
        id="backlog-modal"
        tabindex="-1"
@@ -27,19 +26,6 @@
               <label for="backlogs.body" class="col-form-label">Body:</label>
               <textarea v-model="state.newBacklogs.body" class="form-control" placeholder="Backlog Item Body..." id="backlogs.body"></textarea>
             </div>
-            <!-- <div class="form-group">
-              <label for="color" class="form-label"><b>Background Color:</b></label>
-              <select class="form-select" v-model="state.newBacklogs.color" id="backlogs.color" onchange="state.newBacklogs.color = this.value">
-                <option value="darkmagenta" style="background: darkmagenta">
-                  Magenta
-                </option>
-                <option value="teal" style="background: info">
-                  Teal
-                </option>
-                <option value="slategrey" style="background: slategrey">
-                  Grey
-                </option>
-              </select> -->
             <button type="button" class="btn btn-outline-info btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>

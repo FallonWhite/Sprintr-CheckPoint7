@@ -21,16 +21,16 @@ class BacklogsService {
     AppState.backlogs.push(res.data)
   }
 
+  async update(id, body) {
+    const res = await api.put('api/backlogs/', id, body)
+    logger.log(res.data)
+    AppState.backlogs = res.data
+  }
+
   async destroy(id) {
     await api.delete('api/backlogs/' + id)
     AppState.backlogs = AppState.backlogs.find(b => b.id !== id)
     logger.log('You deleted Successfully')
-  }
-
-  async update(id, body) {
-    const res = await api.put('api/backlogs/', +id, body)
-    logger.log(res.data)
-    AppState.backlogs = res.data
   }
 }
 

@@ -3,37 +3,34 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class SprintsService {
-  async getAll() {
-    const res = await api.get('api/sprints')
+  async getById(id) {
+    const res = await api.get('api/sprints/' + id)
+    logger.log(res.data)
+    AppState.activeSprints = res.data
+  }
+
+  async getTasksBySprint(id) {
+    const res = await api.get('api/sprints/' + id + 'tasks')
+    logger.log(res.data)
+    AppState.task = res.data
+  }
+
+  async create(body) {
+    const res = await api.post('api/sprints', body)
+    logger.log(res.data)
+    AppState.sprints.push = res.data
+  }
+
+  async update(id, body) {
+    const res = await api.put('api/sprints/', id, body)
     logger.log(res.data)
     AppState.sprints = res.data
   }
 
-  async setActiveSprint(id) {
-    const res = await api.get('api/sprints/' + id)
-    AppState.activeSprints = res.data
-  }
-
-  async getTasksBySprintId(id) {
-    const res = await api.get('api/sprints/tasks', id)
-    AppState.sprints = res.data // would this be AppState.tasks = res.data??
-  }
-
-  async create(newSprint) {
-    const res = await api.post('api/sprints', newSprint)
-    // console.log(res.data)
-    AppState.sprints.push = res.data
-    return res.data.id
-  }
-
-  async edit(id, body) {
-    const res = await api.put('api/sprints/' + id)
-    AppState.sprints = res.data
-  }
-
   async destroy(id) {
-    await api.destroy('api/sprints/' + id)
-    AppState.sprints = AppState.sprints.filter(s => s.id !== id)
+    await api.delete('api/sprints/' + id)
+    AppState.sprints = AppState.sprints.find(s => s.id !== id)
+    logger.log('You deleted Successfully')
   }
 }
 export const sprintsService = new SprintsService()
