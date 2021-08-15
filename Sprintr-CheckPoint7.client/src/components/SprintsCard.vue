@@ -1,10 +1,10 @@
 <template>
   <div class="card text-white bg-info mb-3 m-4 justify-content-between " style="max-width: 18rem;">
     <div class="card-header text-center">
-      <h5 class="p-2" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
+      <h5 class="p-2" style="text-align: center; text-shadow: 2px 2px dark; background-color: brown">
         <!-- change this to @click to set active Sprint Item -->
         <!-- option2 this router link will be a modal open - task modal -->
-        <router-link router-link :to="{ name: 'Sprint ', params: {SprintId: sprintsProp.id } }">
+        <router-link router-link :to="{ name: 'Sprint', params: {SprintId: sprintsProp.id } }">
           Sprint Item
         </router-link>
       </h5>

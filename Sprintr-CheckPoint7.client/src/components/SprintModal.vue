@@ -29,7 +29,7 @@
             <button type="button" class="btn btn-outline-info btn-warning m-2" data-dismiss="modal">
               <b><i>Close</i></b>
             </button>
-            <button type="submit" class="btn btn-outline-info btn-info">
+            <button type="submit" class="btn btn-outline-dark btn-info">
               <b>Create</b>
             </button>
           </form>

@@ -3,7 +3,10 @@
     <div class="card-header text-center">
       <h5 class="p-2" style="text-align: center; text-shadow: 2px 2px black; background-color: brown">
         <router-link router-link :to="{ name: 'Backlog', params: {id: projectProp.id } }">
-          Project
+          <router-link router-link :to="{ name: 'Sprint', params: {id: projectProp.id } }">
+            Project
+          </router-link>
+          <!-- </router-link> -->
         </router-link>
       </h5>
     </div>

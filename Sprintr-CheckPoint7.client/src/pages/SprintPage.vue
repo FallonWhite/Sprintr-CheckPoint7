@@ -1,6 +1,5 @@
 <template>
   <div class="row">
-    <!-- activeSprint Card Here -->
     <div class="col-12" v-for="s in sprints" :key="s.id">
       <SprintsCard :sprints-prop="s" />
     </div>

@@ -10,6 +10,10 @@
     <div class="row">
       <ProjectCard v-for="p in projects" :key="p.id" :project-prop="p" />
     </div>
+    <!-- temporay added  -->
+    <div class="row">
+      <SprintsCard v-for="s in sprints" :key="s.id" :sprints-prop="s" />
+    </div>
   </div>
 </template>
 

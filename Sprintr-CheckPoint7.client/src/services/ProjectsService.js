@@ -6,7 +6,7 @@ import { api } from './AxiosService'
 
 class ProjectsService {
   async getAll() {
-    const res = await api.get('api/projects') // where do I need to define my api?
+    const res = await api.get('api/projects')
     logger.log(res.data)
     AppState.projects = res.data
   }
@@ -36,6 +36,7 @@ class ProjectsService {
     const res = await api.post('api/projects', body)
     AppState.projects.push(res.data)
     router.push({ name: 'Backlog', params: { id: res.data.id } })
+    router.push({ name: 'Sprint', params: { id: res.data.id } })
     // return res.data.id
   }
 
@@ -51,7 +52,7 @@ class ProjectsService {
     AppState.projects = AppState.projects.filter(p => p.id !== id)
     // eslint-disable-next-line no-console
     router.push({ name: 'Home' })
-    console.log('Deleted Successfully')
+    logger.log('Deleted Successfully')
   }
 }
 export const projectsService = new ProjectsService()
