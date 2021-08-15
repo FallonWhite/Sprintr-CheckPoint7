@@ -10,7 +10,7 @@
           <button class="btn btn-info text-center ml-4 text-dark" data-target="#backlog-modal" data-toggle="modal">
             <b>Create Backlog Item</b>
           </button>
-          <button class="btn btn-info text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
+          <button class="btn btn-success text-center ml-4" data-target="#sprint-modal" data-toggle="modal">
             <b>Create Sprint</b>
           </button>
         </h1>
@@ -23,9 +23,9 @@
       <button class="btn btn-info text-center ml-2 text-dark" data-target="#sprint-modal" data-toggle="modal">
         <b>Create Sprint</b>
       </button> -->
-      <div class="col-12" v-for="s in sprints" :key="s.id">
+      <div class="col-3" v-for="s in sprints" :key="s.id">
         <router-link :to="{name: 'Sprint', params: {id: s.projectId, sprintId: s.id}}" class="text-dark">
-          <button class="btn btn-info text-center text-dark mt-3 ml-0">
+          <button class="btn btn-primary text-center text-blue mt-3 ml-0">
             <b>{{ s.name }}</b>
           </button>
         </router-link>
