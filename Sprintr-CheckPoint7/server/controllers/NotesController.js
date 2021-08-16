@@ -17,14 +17,14 @@ export class NotesController extends BaseController {
       .delete('/:id', this.destroyNote)
   }
 
-  // async getAll(req, res, next) {
-  //   try {
-  //     const notes = await notesService.getAll({ creatorid: req.userInfo.id })
-  //     res.send(notes)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async getAll(req, res, next) {
+    try {
+      const notes = await notesService.getAll({ creatorid: req.userInfo.id })
+      res.send(notes)
+    } catch (error) {
+      next(error)
+    }
+  }
 
   async getById(req, res, next) {
     try {

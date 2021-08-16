@@ -44,8 +44,8 @@
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import { projectsService } from '../services/ProjectsService'
-// import { backlogsService } from '../services/BacklogsService'
-// import { tasksService } from '../services/TasksService'
+import { backlogsService } from '../services/BacklogsService'
+import { tasksService } from '../services/TasksService'
 import Pop from '../utils/Notifier'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'

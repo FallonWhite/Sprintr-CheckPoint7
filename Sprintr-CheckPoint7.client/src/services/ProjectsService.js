@@ -42,15 +42,13 @@ class ProjectsService {
 
   async edit(id, body) {
     const res = await api.put('api/projects/' + id)
-    // eslint-disable-next-line no-console
-    console.log(res.data)
+    logger.log(res.data)
     AppState.projects = res.data
   }
 
   async destroy(id) {
     await api.delete('api/projects/' + id)
     AppState.projects = AppState.projects.filter(p => p.id !== id)
-    // eslint-disable-next-line no-console
     router.push({ name: 'Home' })
     logger.log('Deleted Successfully')
   }
